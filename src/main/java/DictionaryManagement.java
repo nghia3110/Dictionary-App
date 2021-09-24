@@ -1,9 +1,10 @@
 import java.io.*;
 import java.nio.file.FileVisitResult;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class DictionaryManagement extends Dictionary {
-    private static final String URL_PATH = "C:\\Users\\Admin\\javafx-demo\\src\\main\\java\\dictionaries.txt";
+    private static final String URL_PATH = "C:\\Users\\Asus\\IdeaProjects\\Dictionary-App\\src\\main\\java\\Dictionaries.txt";
     public static void insertFromCommandLine() {
         Scanner getStringInput = new Scanner(System.in);
         Scanner getIntegerInput = new Scanner(System.in);
@@ -53,4 +54,5 @@ public class DictionaryManagement extends Dictionary {
         String target = getInput.nextLine();
         
     }
+
 }
