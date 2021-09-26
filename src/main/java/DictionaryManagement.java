@@ -2,7 +2,8 @@ import java.io.*;
 import java.util.*;
 
 public class DictionaryManagement extends Dictionary {
-    private static final String URL_PATH = "src/main/java/dictionaries.txt";
+    private static final String IN_PATH = "src/main/java/dictionaries.txt";
+    private static final String OUT_PATH = "src/main/java/dictionaries_out.txt";
     public static void insertFromCommandLine() {
         Scanner getStringInput = new Scanner(System.in);
         Scanner getIntegerInput = new Scanner(System.in);
@@ -19,7 +20,7 @@ public class DictionaryManagement extends Dictionary {
 
     public static void insertFromFile() {
         try {
-            File inFile = new File(URL_PATH);
+            File inFile = new File(IN_PATH);
             FileReader fileReader = new FileReader(inFile);
             BufferedReader reader = new BufferedReader(fileReader);
             String line = null;
@@ -34,10 +35,43 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
+    public static void exportWordToFile() {
+        try {
+            File file = new File(OUT_PATH);
+            OutputStream outputStream = new FileOutputStream(file);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+            BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+            String format = "%-15s %-15s%n";
+            for (int i = 0; i < words.size(); i++) {
+                bufferedWriter.write(String.format(format, words.get(i).getWord_target(), words.get(i).getWord_meaning()));
+            }
+            bufferedWriter.flush();
+            bufferedWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void changeWordInFile(){
+        try{
+            FileWriter fileWriter = new FileWriter(IN_PATH);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            for(int i = 0; i< words.size(); i++){
+                bufferedWriter.write(words.get(i).getWord_target() + "," + words.get(i).getWord_meaning() + "\n");
+            }
+            bufferedWriter.flush();
+            bufferedWriter.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static void addWord(String Word_target, String Word_explain) {
         Word w = new Word(Word_target.toLowerCase(Locale.ROOT), Word_explain.toLowerCase(Locale.ROOT));
         words.add(w);
         Collections.sort(words);
+        changeWordInFile();
     }
 
     public static void removeWord(String Word_target) {
@@ -48,6 +82,7 @@ public class DictionaryManagement extends Dictionary {
         } else {
             System.out.println("Từ bạn cần xoá không có trong từ điển!");
         }
+        changeWordInFile();
     }
 
     public static void modifyWord(String Word_target, String Word_meaning) {
@@ -58,6 +93,7 @@ public class DictionaryManagement extends Dictionary {
         } else {
             System.out.println("Không tìm thấy từ bạn muốn sửa đổi!");
         }
+        changeWordInFile();
     }
 
     public static byte isContain(String str1, String str2) {
