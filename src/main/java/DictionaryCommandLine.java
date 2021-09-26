@@ -19,6 +19,7 @@ public class DictionaryCommandLine extends Dictionary {
         return new String(showAllWords());
     }
     public static void main(String[] args) {
-        System.out.println(dictionaryAdvanced());
+        //System.out.println(dictionaryAdvanced());
+        DictionaryManagement.dictionaryLookUp();
     }
 }

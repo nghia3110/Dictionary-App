@@ -23,7 +23,7 @@ public class Word implements Comparable<Word> {
     public void setWord_meaning(String word_meaning) {
         this.word_meaning = word_meaning;
     }
-   public int compareTo(Word w) {
+    public int compareTo(Word w) {
       return this.word_target.compareToIgnoreCase(w.word_target);
     }
 }
