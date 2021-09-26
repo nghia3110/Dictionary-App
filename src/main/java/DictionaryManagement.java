@@ -1,12 +1,9 @@
 import java.io.*;
 import java.nio.file.FileVisitResult;
-import java.util.Collection;
 import java.util.Scanner;
 
 public class DictionaryManagement extends Dictionary {
-    private static final String URL_PATH = "src\\main\\java\\dictionaries.txt";
-    private static final String OUT_URL_PATH = "src\\main\\java\\dictionaries_out.txt";
-
+    private static final String URL_PATH = "C:\\Users\\Admin\\javafx-demo\\src\\main\\java\\dictionaries.txt";
     public static void insertFromCommandLine() {
         Scanner getStringInput = new Scanner(System.in);
         Scanner getIntegerInput = new Scanner(System.in);
@@ -37,34 +34,23 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
-    public static void dictionaryExportToFile() {
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(OUT_URL_PATH);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-            BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-            String formatBody = "%-15s %-15s%n";
-            for (int i = 0; i < words.size(); i++) {
-                bufferedWriter.write(String.format(formatBody,words.get(i).getWord_target(), words.get(i).getWord_meaning()));
-            }
-            bufferedWriter.flush();
-            bufferedWriter.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static String dictionaryLookUp() {
+        Scanner getInput = new Scanner(System.in);
+        String target = getInput.nextLine();
+        return lookUp.get(target);
     }
 
-    public static void changeWordFromFile(){
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(URL_PATH);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-            BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-            for (int i = 0; i < words.size(); i++) {
-                bufferedWriter.write(words.get(i).getWord_target() + "," + words.get(i).getWord_meaning() + "\n");
-            }
-            bufferedWriter.flush();
-            bufferedWriter.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void addNewWord(){
+        Scanner getInput = new Scanner(System.in);
+        String target = getInput.nextLine();
+        String meaning = getInput.nextLine();
+        Word newWord = new Word(target,meaning);
+        words.add(newWord);
+    }
+
+    public static void removeWord(){
+        Scanner getInput = new Scanner(System.in);
+        String target = getInput.nextLine();
+        
     }
 }

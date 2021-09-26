@@ -1,10 +1,10 @@
 public class DictionaryCommandLine extends Dictionary {
     public static String showAllWords() {
         String ans = "";
-        ans += ("No   " + "| English       " + "| Vietnamese" + "\n");
+        System.out.printf("%-6s%c %-15s%c %-20s%n","No", '|' ,"English", '|', "Vietnamese");
         for (int i = 0; i < words.size(); i++) {
             String index = String.valueOf(i+1);
-            ans += (index + "    | " + words.get(i).getWord_target() + "            | " + words.get(i).getWord_meaning() + "\n");
+            System.out.printf("%-6d%c %-15s%c %-15s%n",i+1,'|', words.get(i).getWord_target(),'|',words.get(i).getWord_meaning());
         }
         return ans;
     }

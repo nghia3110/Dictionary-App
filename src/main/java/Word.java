@@ -1,4 +1,5 @@
-public class Word {
+
+public class Word implements Comparable<Word> {
     private String word_target;
     private String word_meaning;
 
@@ -21,5 +22,8 @@ public class Word {
     }
     public void setWord_meaning(String word_meaning) {
         this.word_meaning = word_meaning;
+    }
+   public int compareTo(Word w) {
+      return this.word_target.compareToIgnoreCase(w.word_target);
     }
 }
