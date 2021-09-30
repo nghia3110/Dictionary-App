@@ -2,8 +2,11 @@ import java.io.*;
 import java.util.*;
 
 public class DictionaryManagement extends Dictionary {
-    private static final String IN_PATH = "src/main/java/dictionaries.txt";
-    private static final String OUT_PATH = "src/main/java/dictionaries_out.txt";
+    private static final String IN_PATH = "src/main/resource/vocab/dictionaries.txt";
+    private static final String OUT_PATH = "src/main/resource/vocab/dictionaries_out.txt";
+    private static final String ENG_VIE_PATH = "src/main/resource/vocab/eng_vie.txt";
+    private static final String SPLITTING_PATTERN = "<html>";
+
     public static void insertFromCommandLine() {
         Scanner getStringInput = new Scanner(System.in);
         Scanner getIntegerInput = new Scanner(System.in);
@@ -13,7 +16,7 @@ public class DictionaryManagement extends Dictionary {
             String target = getStringInput.nextLine();
             String meaning = getStringInput.nextLine();
             Word temp = new Word(target, meaning);
-            words.add(temp);
+            vocab.add(temp);
             i++;
         }
     }
@@ -27,9 +30,25 @@ public class DictionaryManagement extends Dictionary {
             while ((line = reader.readLine()) != null) {
                 String[] wordsInLine = line.split(",");
                 Word temp = new Word(wordsInLine[0], wordsInLine[1]);
-                words.add(temp);
+                vocab.add(temp);
             }
-            Collections.sort(words);
+            Collections.sort(vocab);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadDataFromFile(){
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(ENG_VIE_PATH));
+            String line;
+            while((line = reader.readLine()) != null) {
+                String[] parts = line.split(SPLITTING_PATTERN);
+                String word = parts[0];
+                String definition = SPLITTING_PATTERN + parts[1];
+                Word wordObj = new Word(word, definition);
+                vocab.add(wordObj);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,8 +61,8 @@ public class DictionaryManagement extends Dictionary {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
             BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
             String format = "%-15s %-15s%n";
-            for (int i = 0; i < words.size(); i++) {
-                bufferedWriter.write(String.format(format, words.get(i).getWord_target(), words.get(i).getWord_meaning()));
+            for (Word word : vocab) {
+                bufferedWriter.write(String.format(format, word.getSearching(), word.getMeaning()));
             }
             bufferedWriter.flush();
             bufferedWriter.close();
@@ -56,8 +75,8 @@ public class DictionaryManagement extends Dictionary {
         try{
             FileWriter fileWriter = new FileWriter(IN_PATH);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            for(int i = 0; i< words.size(); i++){
-                bufferedWriter.write(words.get(i).getWord_target() + "," + words.get(i).getWord_meaning() + "\n");
+            for (Word word : vocab) {
+                bufferedWriter.write(word.getSearching() + "," + word.getMeaning() + "\n");
             }
             bufferedWriter.flush();
             bufferedWriter.close();
@@ -67,37 +86,50 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
-    public static void addWord(String Word_target, String Word_explain) {
-        Word w = new Word(Word_target.toLowerCase(Locale.ROOT), Word_explain.toLowerCase(Locale.ROOT));
-        words.add(w);
-        Collections.sort(words);
+    public static void addWord(String searching, String meaning) {
+        searching = searching.toLowerCase();
+        meaning = meaning.toLowerCase();
+        int posAddWord = binaryCheck(0, vocab.size(), searching);
+        if (posAddWord == -1) {
+            System.out.println("Từ bạn thêm đã tồn tại. Hãy chọn chức năng sửa đổi!");
+            return;
+        }
+        vocab.add(new Word());
+        for (int i = vocab.size() - 2; i >= posAddWord; i--) {
+            vocab.get(i+1).setSearching(vocab.get(i).getSearching());
+            vocab.get(i+1).setMeaning(vocab.get(i).getMeaning());
+        }
+        vocab.get(posAddWord).setSearching(searching);
+        vocab.get(posAddWord).setMeaning(meaning);
         changeWordInFile();
     }
 
-    public static void removeWord(String Word_target) {
-        int index = Collections.binarySearch(words, new Word(Word_target, null));
+    public static void removeWord(String searching) {
+        searching = searching.toLowerCase();
+        int index = Collections.binarySearch(vocab, new Word(searching, null));
         System.out.println(index);
         if (index >= 0) {
-            words.remove(words.get(index));
+            vocab.remove(vocab.get(index));
         } else {
             System.out.println("Từ bạn cần xoá không có trong từ điển!");
         }
         changeWordInFile();
     }
 
-    public static void modifyWord(String Word_target, String Word_meaning) {
+    public static void modifyWord(String searching, String meaning) {
+        searching = searching.toLowerCase();
+        meaning = meaning.toLowerCase();
         int pos = -1;
-        pos = Collections.binarySearch(words, new Word(Word_target, null));
+        pos = Collections.binarySearch(vocab, new Word(searching, null));
         if (pos >= 0) {
-            words.get(pos).setWord_meaning(Word_meaning);
+            vocab.get(pos).setMeaning(meaning);
         } else {
             System.out.println("Không tìm thấy từ bạn muốn sửa đổi!");
         }
         changeWordInFile();
     }
 
-    public static byte isContain(String str1, String str2) {
-        str1 = str1.toLowerCase();
+    public static int isContain(String str1, String str2) {
         for (int i = 0; i < Math.min(str1.length(), str2.length()); i++) {
             if (str1.charAt(i) > str2.charAt(i)) {
                 return 1;
@@ -112,57 +144,88 @@ public class DictionaryManagement extends Dictionary {
         return 0;
     }
 
-    public static int wordSearcher(int start, int end, String word) {
+    public static int binaryCheck(int start, int end, String word) {
         if (end < start) {
             return -1;
         }
         int mid = start + (end - start) / 2;
-        byte compare = isContain(word, words.get(mid).getWord_target());
+        int compareNext = word.compareTo(vocab.get(mid).getSearching());
+        if (mid == 0) {
+            if (compareNext < 0) {
+                return 0;
+            } else if (compareNext > 0) {
+                return binaryCheck(mid + 1, end, word);
+            } else {
+                return -1;
+            }
+        } else {
+            int comparePrevious = word.compareTo(vocab.get(mid-1).getSearching());
+            if (comparePrevious > 0 && compareNext < 0) {
+                return mid;
+            } else if (comparePrevious < 0) {
+                return binaryCheck(start, mid - 1, word);
+            } else if (compareNext > 0) {
+                if (mid == vocab.size()-1) {
+                    return vocab.size();
+                }
+                return binaryCheck(mid + 1, end, word);
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    public static int binaryLookup(int start, int end, String word) {
+        if (end < start) {
+            return -1;
+        }
+        int mid = start + (end - start) / 2;
+        int compare = isContain(word, vocab.get(mid).getSearching());
         if (compare == -1) {
-            return wordSearcher(start, mid - 1, word);
+            return binaryLookup(start, mid - 1, word);
         } else if (compare == 1) {
-            return wordSearcher(mid + 1, end, word);
+            return binaryLookup(mid + 1, end, word);
         } else {
             return mid;
         }
     }
 
-    public static void showWordSearch(String word, int index) {
+    public static void showWordLookup(String word, int index) {
         if (index < 0) {
+            //System.out.println((new Spelling.("src/main/java/big.txt")).correct(word.toLowerCase()));
             return;
         }
-        ArrayList<Word> listWordSearch = new ArrayList<Word>();
+        ArrayList<Word> listWordSearching = new ArrayList<Word>();
         int j = index;
         while (j >= 0) {
-            if (isContain(word, words.get(j).getWord_target()) == 0) {
+            if (isContain(word, vocab.get(j).getSearching()) == 0) {
                 j--;
             } else {
                 break;
             }
         }
         for (int i = j + 1; i <= index; i++) {
-            Word temp = new Word(words.get(i).getWord_target(), words.get(i).getWord_meaning());
-            listWordSearch.add(temp);
+            Word temp = new Word(vocab.get(i).getSearching(), vocab.get(i).getMeaning());
+            listWordSearching.add(temp);
         }
-        for (int i = index + 1; i < words.size(); i++) {
-            if (isContain(word, words.get(i).getWord_target()) == 0) {
-                Word temp = new Word(words.get(i).getWord_target(), words.get(i).getWord_meaning());
-                listWordSearch.add(temp);
+        for (int i = index + 1; i < vocab.size(); i++) {
+            if (isContain(word, vocab.get(i).getSearching()) == 0) {
+                Word temp = new Word(vocab.get(i).getSearching(), vocab.get(i).getMeaning());
+                listWordSearching.add(temp);
             }
             else {
                 break;
             }
         }
-        for (int i = 0; i < listWordSearch.size(); i++) {
-            System.out.println(listWordSearch.get(i).getWord_target());
+        for (Word wordSearching : listWordSearching) {
+            System.out.println(wordSearching.getSearching());
         }
     }
 
     public static void dictionaryLookUp() {
         Scanner getInput = new Scanner(System.in);
-        String target = getInput.nextLine();
-        DictionaryManagement.insertFromFile();
-        int index = wordSearcher(0, words.size(), target);
-        showWordSearch(target, index);
+        String word = getInput.nextLine().toLowerCase();
+        int index = binaryLookup(0, vocab.size(), word);
+        showWordLookup(word, index);
     }
 }

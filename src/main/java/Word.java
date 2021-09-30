@@ -1,29 +1,34 @@
-
 public class Word implements Comparable<Word> {
-    private String word_target;
-    private String word_meaning;
+    private String searching;
+    private String meaning;
 
     public Word(){
-        word_target = "";
-        word_meaning = "";
+        searching = "";
+        meaning = "";
     }
-    public Word(String word_target, String word_meaning){
-        this.word_target = word_target;
-        this.word_meaning = word_meaning;
+
+    public Word(String searching, String meaning){
+        this.searching = searching;
+        this.meaning = meaning;
     }
-    public String getWord_target() {
-        return word_target;
+
+    public String getSearching() {
+        return searching;
     }
-    public String getWord_meaning() {
-        return word_meaning;
+
+    public String getMeaning() {
+        return meaning;
     }
-    public void setWord_target(String word_target) {
-        this.word_target = word_target;
+
+    public void setSearching(String searching) {
+        this.searching = searching;
     }
-    public void setWord_meaning(String word_meaning) {
-        this.word_meaning = word_meaning;
+
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
     }
-    public int compareTo(Word w) {
-      return this.word_target.compareToIgnoreCase(w.word_target);
+
+    public int compareTo(Word other) {
+        return this.searching.compareToIgnoreCase(other.searching);
     }
 }
