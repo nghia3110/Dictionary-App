@@ -1,0 +1,104 @@
+.root {
+    -button-color: #747f8d;
+    -hover-button-color: #2e3338;   
+    -transparent-color: none;
+    -hover-background-color: #D4D7DC;
+    -hover-text-color: #2e3338;
+ }
+
+/* ========================= Navigation Bar ========================= */
+
+.button-favicon {
+    -fx-graphic: url('../resource/media/normal/favicon.png');
+    -fx-background-color: -transparent-color;
+}
+
+.button-search {
+    -fx-graphic: url('../resource/media/normal/search.png');
+    -fx-background-color: -transparent-color;
+}
+
+.button-search:hover {
+    -fx-graphic: url('../resource/media/hover/search.png');
+    -fx-background-color: -hover-background-color;
+    -fx-text-fill: -hover-text-color;
+}
+
+.button-translate {
+    -fx-graphic: url('../resource/media/normal/translate.png');
+    -fx-background-color: -transparent-color;
+}
+
+.button-translate:hover {
+    -fx-graphic: url('../resource/media/hover/translate.png');
+    -fx-background-color: -hover-background-color;
+    -fx-text-fill: -hover-text-color;
+}
+
+.button-favourite {
+    -fx-graphic: url('../resource/media/normal/favourite.png');
+    -fx-background-color: -transparent-color;
+}
+
+.button-favourite:hover {
+    -fx-graphic: url('../resource/media/hover/favourite.png');
+    -fx-background-color: -hover-background-color;
+    -fx-text-fill: -hover-text-color;
+}
+
+.button-history {
+    -fx-graphic: url('../resource/media/normal/history.png');
+    -fx-background-color: -transparent-color;
+}
+
+.button-history:hover {
+    -fx-graphic: url('../resource/media/hover/history.png');
+    -fx-background-color: -hover-background-color;
+    -fx-text-fill: -hover-text-color;
+}
+
+.button-setting {
+    -fx-graphic: url('../resource/media/normal/setting.png');
+    -fx-background-color: -transparent-color;
+}
+
+.button-setting:hover {
+    -fx-graphic: url('../resource/media/hover/setting.png');
+    -fx-background-color: -hover-background-color;
+    -fx-text-fill: -hover-text-color;
+}
+
+/* ========================= Meaning Tab ============================ */
+
+.button-speak {
+    -fx-graphic: url('../resource/media/normal/speak.png');
+    -fx-background-color: -transparent-color;
+}
+
+.button-speak:hover {
+    -fx-graphic: url('../resource/media/hover/speak.png');
+    -fx-background-color: -hover-background-color;
+    -fx-text-fill: -hover-text-color;
+}
+
+.button-edit {
+    -fx-graphic: url('../resource/media/normal/edit.png');
+    -fx-background-color: -transparent-color;
+}
+
+.button-edit:hover {
+    -fx-graphic: url('../resource/media/hover/edit.png');
+    -fx-background-color: -hover-background-color;
+    -fx-text-fill: -hover-text-color;
+}
+
+.button-remove {
+    -fx-graphic: url('../resource/media/normal/remove.png');
+    -fx-background-color: -transparent-color;
+}
+
+.button-remove:hover {
+    -fx-graphic: url('../resource/media/hover/remove.png');
+    -fx-background-color: -hover-background-color;
+    -fx-text-fill: -hover-text-color;
+}
