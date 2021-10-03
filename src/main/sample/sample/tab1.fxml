@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Tab1">
+   <children>
+      <Label layoutX="251.0" layoutY="91.0" prefHeight="31.0" prefWidth="72.0" text="Nhập từ:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="WordSearching" layoutX="182.0" layoutY="144.0" prefHeight="31.0" prefWidth="224.0" promptText="WordTarget" />
+      <Label layoutX="248.0" layoutY="219.0" text="Nhập nghĩa:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="WordMeaning" layoutX="182.0" layoutY="258.0" prefHeight="0.0" prefWidth="224.0" promptText="WordExplain" />
+      <Button layoutX="267.0" layoutY="323.0" mnemonicParsing="false" onAction="#Submit" text="Add">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

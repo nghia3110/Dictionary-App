@@ -1,3 +1,5 @@
+package dictionary;
+
 public class Word implements Comparable<Word> {
     private String searching;
     private String meaning;

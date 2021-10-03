@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <BorderPane layoutX="178.0" layoutY="95.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -31,7 +31,7 @@
                                  <children>
                                     <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@images/search_white.png" />
+
                                        </image>
                                     </ImageView>
                                     <Label text="Search" textFill="WHITE" />
@@ -42,13 +42,13 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: none;" textFill="WHITE">
+                        <Button alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#display" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: none;" textFill="WHITE">
                            <graphic>
                               <VBox alignment="CENTER" prefHeight="67.0" prefWidth="69.0">
                                  <children>
                                     <ImageView fitHeight="18.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@images/plus.png" />
+
                                        </image>
                                     </ImageView>
                                     <Label text="Add" textFill="WHITE" />
@@ -65,7 +65,7 @@
                                  <children>
                                     <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@images/edit.png" />
+
                                        </image>
                                     </ImageView>
                                     <Label text="Edit" textFill="WHITE" />
@@ -82,7 +82,7 @@
                                  <children>
                                     <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@images/bookmark.png" />
+
                                        </image>
                                     </ImageView>
                                     <Label text="Bookmark" textFill="WHITE" />
@@ -99,7 +99,7 @@
                                  <children>
                                     <ImageView fitHeight="18.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@images/settings.png" />
+
                                        </image>
                                     </ImageView>
                                     <Label text="Setting" textFill="WHITE" />
@@ -115,6 +115,7 @@
                </children>
             </AnchorPane>
          </left>
+
       </BorderPane>
    </children>
 </AnchorPane>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Tab2">
+   <Label layoutX="229.0" layoutY="153.0" text="Nhập từ cần xóa:">
+      <font>
+         <Font size="17.0" />
+      </font>
+   </Label>
+   <TextField fx:id="WordSearching" layoutX="201.0" layoutY="211.0" prefHeight="31.0" prefWidth="199.0" promptText="Nhập từ cần xóa" />
+   <Button layoutX="263.0" layoutY="297.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
+
+</AnchorPane>

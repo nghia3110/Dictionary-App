@@ -1,3 +1,5 @@
+package dictionary;
+
 public class DictionaryCommandLine extends Dictionary {
     public static String showAllWords() {
         String ans = "";
@@ -10,10 +12,10 @@ public class DictionaryCommandLine extends Dictionary {
     }
 
     public static void main(String[] args) {
-        //DictionaryManagement.insertFromFile();
-        DictionaryManagement.loadDataFromFile();
-        DictionaryManagement.dictionaryLookUp();
-        //DictionaryManagement.addWord("BABY","zzz");
+        dictionary.DictionaryManagement.insertFromFile();
+        //DictionaryManagement.loadDataFromFile();
+        DictionaryManagement.modifyWord("aaa","bbb");
+        //dictionary.DictionaryManagement.addWord("BABY","zzz");
         //System.out.println(showAllWords());
     }
 }

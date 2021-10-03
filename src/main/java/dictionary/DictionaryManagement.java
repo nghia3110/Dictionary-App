@@ -1,10 +1,12 @@
+package dictionary;
+
 import java.io.*;
 import java.util.*;
 
 public class DictionaryManagement extends Dictionary {
     private static final String IN_PATH = "src/main/resource/vocab/dictionaries.txt";
     private static final String OUT_PATH = "src/main/resource/vocab/dictionaries_out.txt";
-    private static final String ENG_VIE_PATH = "src/main/resource/vocab/eng_vie.txt";
+    private static final String ENG_VIE_PATH = "src/main/resource/vocab/test.txt";
     private static final String SPLITTING_PATTERN = "<html>";
 
     public static void insertFromCommandLine() {
@@ -38,11 +40,11 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
-    public static void loadDataFromFile(){
+    public static void loadDataFromFile() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(ENG_VIE_PATH));
+            BufferedReader reader = new BufferedReader(new FileReader(IN_PATH));
             String line;
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(SPLITTING_PATTERN);
                 String word = parts[0];
                 String definition = SPLITTING_PATTERN + parts[1];
@@ -71,19 +73,28 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
-    public static void changeWordInFile(){
-        try{
-            FileWriter fileWriter = new FileWriter(IN_PATH);
+    public static void changeWordInFile() {
+        try {
+            FileWriter fileWriter = new FileWriter(ENG_VIE_PATH);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             for (Word word : vocab) {
                 bufferedWriter.write(word.getSearching() + "," + word.getMeaning() + "\n");
             }
             bufferedWriter.flush();
             bufferedWriter.close();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean checklookup(String searching) {
+        searching = searching.toLowerCase();
+        int posAddWord = binaryCheck(0, vocab.size(), searching);
+        if (posAddWord == -1) {
+
+            return false;
+        }
+        return true;
     }
 
     public static void addWord(String searching, String meaning) {
@@ -96,8 +107,8 @@ public class DictionaryManagement extends Dictionary {
         }
         vocab.add(new Word());
         for (int i = vocab.size() - 2; i >= posAddWord; i--) {
-            vocab.get(i+1).setSearching(vocab.get(i).getSearching());
-            vocab.get(i+1).setMeaning(vocab.get(i).getMeaning());
+            vocab.get(i + 1).setSearching(vocab.get(i).getSearching());
+            vocab.get(i + 1).setMeaning(vocab.get(i).getMeaning());
         }
         vocab.get(posAddWord).setSearching(searching);
         vocab.get(posAddWord).setMeaning(meaning);
@@ -133,8 +144,7 @@ public class DictionaryManagement extends Dictionary {
         for (int i = 0; i < Math.min(str1.length(), str2.length()); i++) {
             if (str1.charAt(i) > str2.charAt(i)) {
                 return 1;
-            }
-            else if (str1.charAt(i) < str2.charAt(i)) {
+            } else if (str1.charAt(i) < str2.charAt(i)) {
                 return -1;
             }
         }
@@ -159,13 +169,13 @@ public class DictionaryManagement extends Dictionary {
                 return -1;
             }
         } else {
-            int comparePrevious = word.compareTo(vocab.get(mid-1).getSearching());
+            int comparePrevious = word.compareTo(vocab.get(mid - 1).getSearching());
             if (comparePrevious > 0 && compareNext < 0) {
                 return mid;
             } else if (comparePrevious < 0) {
                 return binaryCheck(start, mid - 1, word);
             } else if (compareNext > 0) {
-                if (mid == vocab.size()-1) {
+                if (mid == vocab.size() - 1) {
                     return vocab.size();
                 }
                 return binaryCheck(mid + 1, end, word);
@@ -212,8 +222,7 @@ public class DictionaryManagement extends Dictionary {
             if (isContain(word, vocab.get(i).getSearching()) == 0) {
                 Word temp = new Word(vocab.get(i).getSearching(), vocab.get(i).getMeaning());
                 listWordSearching.add(temp);
-            }
-            else {
+            } else {
                 break;
             }
         }
