@@ -1,10 +1,5 @@
-abaddon<html><i>abaddon /ə'bædən/</i><br/><ul><li><b><i> danh từ</i></b><ul><li><font color='#cc0000'><b> âm ti, địa ngục</b></font></li></ul><ul><li><font color='#cc0000'><b> con quỷ</b></font></li></ul></li></ul></html>
-abaft<html><i>abaft /ə'bɑ:ft/</i><br/><ul><li><b><i> phó từ</i></b><ul><li><font color='#cc0000'><b> (hàng hải) ở phía sau bánh lái, gần phía bánh lái</b></font><ul></li></ul></ul></li></ul><ul><li><b><i> giới từ</i></b><ul><li><font color='#cc0000'><b> (hàng hải) sau, ở đằng sau, ở phía sau</b></font><ul><li><b>abaft the mast</b>: sau cột buồm</li></ul></li></ul></li></ul></html>
-abalienate<html><i>abalienate</i><br/><ul><li><b><i> ngoại động từ</i></b><ul><li><font color='#cc0000'><b> nhường lại tài sản</b></font></li></ul></li></ul></html>
-abalienated<html><i>abalienate</i><br/><ul><li><b><i> ngoại động từ</i></b><ul><li><font color='#cc0000'><b> nhường lại tài sản</b></font></li></ul></li></ul></html>
-abalienates<html><i>abalienate</i><br/><ul><li><b><i> ngoại động từ</i></b><ul><li><font color='#cc0000'><b> nhường lại tài sản</b></font></li></ul></li></ul></html>
-abalienating<html><i>abalienate</i><br/><ul><li><b><i> ngoại động từ</i></b><ul><li><font color='#cc0000'><b> nhường lại tài sản</b></font></li></ul></li></ul></html>
-abalienation<html><i>abalienation</i><br/><ul><li><b><i> danh từ</i></b><ul><li><font color='#cc0000'><b> sự nhường lại tài sản</b></font></li></ul></li></ul></html>
-abalone<html><i>abalone /,æbə'louni/</i><br/><ul><li><b><i> danh từ</i></b><ul><li><font color='#cc0000'><b> (từ mỹ,nghĩa mỹ) bào ngư</b></font></li></ul></li></ul></html>
-abalones<html><i>abalone /,æbə'louni/</i><br/><ul><li><b><i> danh từ</i></b><ul><li><font color='#cc0000'><b> (từ mỹ,nghĩa mỹ) bào ngư</b></font></li></ul></li></ul></html>
-abampere<html><i>abampere</i><br/><ul><li><font color='#cc0000'><b> (tech) abampe, ampe tuyệt đối (đơn vị cường độ tuyệt đối của dòn
+-manship<html><head></head><body contenteditable="true"><i>-manship</i><br><ul><li><font color="#cc0000"><b> hình thái ghép có nghĩa tài nghệ</b></font></li></ul></body></html>
+-ment<html><i>-ment</i><br/><ul><li><font color='#cc0000'><b> hậu tố tạo danh từ có nghĩa:sự, quá trìnhthái độ, tình trạngsản phẩm, kết quả, nơi</b></font></li></ul></html>
+-mer<html><i>-mer</i><br/><ul><li><font color='#cc0000'><b> hậu tố tạo danh từ có nghĩa là polyme (trùng phân) hoặc isome (đồng phân)</b></font></li></ul></html>
+-merous<html><i>-merous</i><br/><ul><li><font color='#cc0000'><b> hình thái ghép tạo tính từ có nghĩa: có một số bộ phận nhất định</b></font></li></ul></html>
+nghia<html><head></head><body contenteditable="true"><i>nghia</i><br><ul><li><b><i> tính từ</i></b><ul><li><font color="#cc0000"><b> Nghĩa thứ nhất: đẹp trai</b></font><ul></ul></li></ul></li></ul><ul><li><b><i>tính từ</i></b><ul><li><font color="#cc0000"><b> Nghĩa thứ hai: 18cm</b></font></li></ul></li></ul></body></html>
