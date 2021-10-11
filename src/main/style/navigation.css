@@ -1,0 +1,84 @@
+.root {
+    -button-color: #747f8d;
+    -hover-button-color: #2e3338; 
+
+    -purple-color: #5865F2;
+    -hover-purple-color: #4752C4;
+
+    -text-color: #555c5d;
+    -hover-text-color: #2e3338;  
+
+    -gray-color: #e6e6e6;
+    -title-color: #060607;
+    -hover-background-color: #D4D7DC;
+}
+
+.first-color {
+    -fx-background-color: white;
+}
+
+.second-color {
+    -fx-background-color: #f2f3f5;
+}
+
+.third-color {
+    -fx-background-color: #e3e5e8;
+}
+
+/* ========================= Button ========================= */
+
+.button {
+    -fx-background-color: none;
+    -fx-text-fill: -text-color;
+    -fx-font-size: 11;
+}
+
+.button:hover {
+    -fx-background-color: -hover-background-color;
+    -fx-text-fill: -hover-text-color;
+    -fx-cursor: hand;
+}
+
+.button-favicon {
+    -fx-graphic: url('../resource/media/normal/favicon.png');
+}
+
+.button-search {
+    -fx-graphic: url('../resource/media/normal/search.png');
+}
+
+.button-search:hover {
+    -fx-graphic: url('../resource/media/hover/search.png');
+}
+
+.button-translate {
+    -fx-graphic: url('../resource/media/normal/translate.png');
+}
+
+.button-translate:hover {
+    -fx-graphic: url('../resource/media/hover/translate.png');
+}
+
+.button-favourite {
+    -fx-graphic: url('../resource/media/normal/favourite.png');
+}
+
+.button-favourite:hover {
+    -fx-graphic: url('../resource/media/hover/favourite.png');
+}
+
+.button-history {
+    -fx-graphic: url('../resource/media/normal/history.png');
+}
+
+.button-history:hover {
+    -fx-graphic: url('../resource/media/hover/history.png');
+}
+
+.button-setting {
+    -fx-graphic: url('../resource/media/normal/setting.png');
+}
+
+.button-setting:hover {
+    -fx-graphic: url('../resource/media/hover/setting.png');
+}
