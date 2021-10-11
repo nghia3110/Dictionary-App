@@ -1,0 +1,116 @@
+.root {
+    -button-color: #747f8d;
+    -hover-button-color: #2e3338; 
+
+    -purple-color: #5865F2;
+    -hover-purple-color: #4752C4;
+
+    -text-color: #555c5d;
+    -hover-text-color: #2e3338;  
+
+    -gray-color: #e6e6e6;
+    -title-color: #060607;
+    -hover-background-color: #D4D7DC;
+}
+ 
+/* ========================= Button ========================= */
+
+.button-lang {
+    -fx-background-color: -gray-color;
+    -fx-min-width: 90;
+    -fx-padding: 5;
+    -fx-text-fill: -text-color;
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+}
+
+.button-lang:hover {
+    -fx-background-color: -hover-background-color;
+    -fx-text-fill: -hover-text-color;
+    -fx-cursor: hand;
+}
+
+.button-lang:focused {
+    -fx-background-color: white;
+    -fx-text-fill: -hover-text-color;
+}
+
+.button-speak {
+    -fx-background-image: url('../resource/media/normal/speak.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 25;
+    -fx-background-color: -gray-color;
+    -fx-pref-width: 35;
+    -fx-pref-height: 35;
+}
+
+.button-speak:hover {
+    -fx-background-image: url('../resource/media/hover/speak.png');
+    -fx-background-color: -hover-background-color;
+    -fx-background-size: 25;
+    -fx-text-fill: -hover-text-color;
+    -fx-cursor: hand;
+}
+
+.button-double-arrow {
+    -fx-background-image: url('../resource/media/normal/double-arrow.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 25;
+    -fx-background-color: none;
+    -fx-pref-width: 60;
+    -fx-pref-height: 40;
+}
+
+.button-translate-submit {
+    -fx-graphic: url('../resource/media/normal/translate-submit.png');
+    -fx-background-color: -purple-color;
+    -fx-border-radius: 3;
+    -fx-padding: 5;
+    -fx-pref-width: 120;
+    -fx-pref-height: 30;
+
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+.button-translate-submit:hover {
+    -fx-background-color: -hover-purple-color;
+    -fx-cursor: hand;
+}
+
+/* ========================= TextField ========================= */
+
+.text-field-lang {
+    -fx-background-color: white;
+    -fx-font-size: 15;
+}
+
+.text-field-lang:focused {
+    -fx-background-color:white;
+    -fx-border-color: -purple-color;
+    -fx-border-radius: 3;
+}
+/* ========================= TextArea ========================= */
+
+.text-area {
+    -fx-background-insets: 0;
+    -fx-background-color: white;
+}
+
+.text-area .content {
+    -fx-background-color: white;
+    -fx-font-size: 15;
+}
+
+.text-area:focused {
+    -fx-background-color:white;
+    -fx-font-size: 15;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-font-size: 15;
+}

@@ -1,0 +1,16 @@
+abc             xyz            
+baby            zzz            
+car             ô tô           
+cat             mèo            
+computer        máy tính       
+dog             chó            
+friend          bạn bè         
+gha             asv            
+hello           xin chào       
+house           ngôi nhà       
+human           con người      
+phone           điện thoại     
+song            bài hát        
+time            thời gian      
+women           phụ nữ         
+zzz             zzz            
