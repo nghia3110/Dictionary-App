@@ -88,10 +88,9 @@
 
 /* ========================= Button ========================= */
 
-/*
 .button-main {
     -fx-background-color: -purple-color;
-    -fx-min-width: 110;
+    -fx-min-width: 100;
     -fx-border-radius: 3;
     -fx-padding: 6;
     -fx-text-fill: white;
@@ -103,7 +102,6 @@
     -fx-background-color: -hover-purple-color;
     -fx-cursor: hand;
 }
-*/
 
 .button-speak {
     -fx-background-image: url('../resource/media/normal/speak.png');
@@ -129,8 +127,8 @@
     -fx-background-size: 15;
     -fx-background-color: -purple-color;
     -fx-background-radius: 0 3 3 0;
-    -fx-pref-width: 32;
-    -fx-pref-height: 32;
+    -fx-pref-width: 34;
+    -fx-pref-height: 34;
 }
 
 .button-arrow:hover {
@@ -153,8 +151,8 @@
     -fx-cursor: hand;
 }
 
-.button-edit {
-    -fx-graphic: url('../resource/media/normal/edit.png');
+.button-reset {
+    -fx-graphic: url('../resource/media/normal/reset.png');
     -fx-background-color: none;
     -fx-pref-width: 35;
     -fx-pref-height: 35;
@@ -162,8 +160,8 @@
 }
 
 
-.button-edit:hover {
-    -fx-graphic: url('../resource/media/hover/edit.png');
+.button-reset:hover {
+    -fx-graphic: url('../resource/media/hover/reset.png');
     -fx-background-color: -hover-background-color;
     -fx-text-fill: -hover-text-color;
     -fx-cursor: hand;
@@ -289,7 +287,6 @@
 }
 
 .tab-pane {
-
     -fx-tab-min-height: 30px;
 }
 

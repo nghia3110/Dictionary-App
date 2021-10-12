@@ -30,10 +30,10 @@
 .text-field {
     -fx-background-image: url('../resource/media/normal/search-bar.png');
     -fx-background-size: 22;
+    -fx-background-color: #e3e5e8;
     -fx-background-repeat: no-repeat;
     -fx-background-position: right center;
     -fx-background-radius: 0 3 3 0;
-    -fx-background-color: #e3e5e8;
 
     -fx-border-radius: 0 3 3 0;
     -fx-border-width: 1;
@@ -61,6 +61,7 @@
 .list-cell:filled:hover, .list-cell:filled:selected:focused, .list-cell:filled:selected {
     -fx-background-color: -hover-background-color;
     -fx-text-fill: -hover-text-color;
+    -fx-cursor: hand;
 }
 
 /* ========================= Text ========================= */
@@ -86,11 +87,12 @@
 /* ========================= HTML Editor ========================= */
 
 .html-editor {
-    -fx-font-size: 12;  
+    -fx-pref-width: 100;
     -fx-border-color: -purple-color; 
     -fx-border-radius: 3;   
     -fx-focus-color: none;
-    -fx-pref-width: 100;
+
+    -fx-font-size: 12;
 }
  
 .html-editor .button, .html-editor .toggle-button {
@@ -119,19 +121,16 @@
 
 .button-speak {
     -fx-background-image: url('../resource/media/normal/speak.png');
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
     -fx-background-size: 15;
     -fx-background-color: none;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
     -fx-pref-width: 20;
     -fx-pref-height: 20;
 }
 
 .button-speak:hover {
     -fx-background-image: url('../resource/media/hover/speak.png');
-    -fx-background-size: 15;
-    -fx-pref-width: 20;
-    -fx-pref-height: 20;
     -fx-text-fill: -hover-text-color;
     -fx-cursor: hand;
 }
@@ -139,8 +138,9 @@
 .button-favourite {
     -fx-graphic: url('../resource/media/normal/favourite.png');
     -fx-background-color: none;
-    -fx-pref-width: 40;
-    -fx-pref-height: 40;
+    -fx-pref-width: 35;
+    -fx-pref-height: 35;
+    -fx-padding: 0;
 }
 
 .button-favourite:hover {
