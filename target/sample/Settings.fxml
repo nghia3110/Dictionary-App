@@ -16,7 +16,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="second-color" stylesheets="@../style/setting.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Settings">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="second-color" stylesheets="@../style/setting.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Settings">
     <children>
         <VBox layoutY="9.0" prefHeight="591.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0">
             <children>
@@ -48,13 +48,13 @@
                                 </HBox>
                             </content>
                         </Tab>
-                        <Tab text="Thêm từ vựng">
+                        <Tab text="Thêm từ">
                             <content>
-                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="800.0" style="-fx-background-color: white;">
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;">
                                     <children>
                                         <VBox prefHeight="550.0" prefWidth="723.0">
                                             <children>
-                                                <AnchorPane prefHeight="551.0" prefWidth="723.0">
+                                                <AnchorPane prefHeight="542.0" prefWidth="690.0">
                                                     <children>
                                                         <Label layoutX="86.0" layoutY="25.0" styleClass="text-label" text="Từ điển" />
                                                         <RadioButton fx:id="addEV" layoutX="86.0" layoutY="66.0" mnemonicParsing="false" text="Anh - Việt">
@@ -65,8 +65,8 @@
                                                         <RadioButton fx:id="addVE" layoutX="227.0" layoutY="66.0" mnemonicParsing="false" text="Việt - Anh" toggleGroup="$data1">
                                                         </RadioButton>
                                                         <Label layoutX="396.0" layoutY="25.0" prefHeight="25.0" prefWidth="66.0" styleClass="text-label" text="Từ vựng" />
-                                          <TextField fx:id="text1111" layoutX="396.0" layoutY="58.0" prefHeight="35.0" prefWidth="187.0" promptText="Tìm từ" styleClass="text-field-edit" />
-                                          <Button ellipsisString="" layoutX="582.0" layoutY="58.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" styleClass="button-arrow" />
+                                                          <TextField fx:id="addText" layoutX="396.0" layoutY="59.0" prefHeight="35.0" prefWidth="187.0" styleClass="text-field-add" />
+                                                          <Button ellipsisString="" layoutX="582.0" layoutY="59.0" mnemonicParsing="false" prefHeight="35.0" styleClass="button-arrow" />
                                                         <HBox alignment="CENTER_RIGHT" layoutX="561.0" layoutY="124.0" prefHeight="39.0" prefWidth="103.0">
                                                             <children>
                                                                 <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#add" prefHeight="39.0" prefWidth="54.0" styleClass="button-save" textFill="#4d99f5">
@@ -112,9 +112,9 @@
                                                         <RadioButton fx:id="va" layoutX="227.0" layoutY="66.0" mnemonicParsing="false" text="Việt - Anh" toggleGroup="$data">
                                                         </RadioButton>
                                                         <Label layoutX="396.0" layoutY="25.0" prefHeight="25.0" prefWidth="66.0" styleClass="text-label" text="Từ vựng" />
-                                          <TextField fx:id="text11" layoutX="396.0" layoutY="58.0" prefHeight="35.0" prefWidth="187.0" promptText="Tìm từ" styleClass="text-field-edit" />
-                                          <TextField fx:id="text111" layoutX="396.0" layoutY="58.0" prefHeight="35.0" prefWidth="187.0" promptText="Tìm từ" styleClass="text-field-edit" />
-                                          <Button ellipsisString="" layoutX="582.0" layoutY="58.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" styleClass="button-arrow" />
+                                          <TextField fx:id="addText1" layoutX="396.0" layoutY="59.0" prefHeight="35.0" prefWidth="187.0" styleClass="text-field-add" />
+                                          <TextField fx:id="addText11" layoutX="396.0" layoutY="59.0" prefHeight="35.0" prefWidth="187.0" styleClass="text-field-add" />
+                                          <Button ellipsisString="" layoutX="582.0" layoutY="59.0" mnemonicParsing="false" prefHeight="35.0" styleClass="button-arrow" />
                                                         <HBox alignment="CENTER_RIGHT" layoutX="561.0" layoutY="124.0" prefHeight="39.0" prefWidth="103.0">
                                                             <children>
                                                                 <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#save" prefHeight="39.0" prefWidth="54.0" styleClass="button-save" textFill="#4d99f5">
