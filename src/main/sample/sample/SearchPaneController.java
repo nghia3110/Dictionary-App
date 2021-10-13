@@ -2,15 +2,27 @@ package sample;
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import main.Spelling;
 import main.Word;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.ResourceBundle;
 
-public class SearchPaneController extends GeneralController {
+public class SearchPaneController extends GeneralController implements Initializable {
     private ArrayList<Word> searchWordTemp = new ArrayList<Word>();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+        for (Word temp : getCurrentDic().getVocab()) {
+            searchWordTemp.add(temp);
+            searchList.add(temp.getSearching());
+        }
+        wordListView.setItems(searchList);
+    }
 
     public void setSearchListViewItem() {
         searchList.clear();
@@ -43,8 +55,7 @@ public class SearchPaneController extends GeneralController {
         String meaning =  getCurrentDic().getVocab().get(index).getMeaning();
         definitionView.getEngine().loadContent(meaning, "text/html");
         if (Collections.binarySearch(getCurrentDic().getHistoryVocab(), new Word(spelling, null)) <= 0) {
-            getCurrentDic().exportWordToHTMLFile(getCurrentDic().getHISTORY_PATH(), spelling);
-        }
+            getCurrentDic().addWordToFile(spelling, meaning, getCurrentDic().getHISTORY_PATH());        }
     }
 
     @FXML

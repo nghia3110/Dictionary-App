@@ -2,6 +2,7 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import main.Word;
 
 import java.net.URL;
@@ -84,6 +85,14 @@ public class BookmarkController extends GeneralController implements Initializab
     @FXML
     public void handleClickBookmarkButton() {
         String spelling = searchField.getText();
+        if(spelling.equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Không có từ nào được chọn!");
+            alert.showAndWait();
+            return;
+        }
         int index = Collections.binarySearch(getCurrentDic().getBookmarkVocab(), new Word(spelling, null));
         removeBookmark(getCurrentDic().getBookmarkVocab().get(index));
         searchField.clear();

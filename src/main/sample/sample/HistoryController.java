@@ -72,7 +72,7 @@ public class HistoryController extends GeneralController implements Initializabl
     protected void initHistoryListView() {
         getCurrentDic().getHistoryVocab().clear();
         wordListView.getItems().clear();
-        getCurrentDic().loadDataFromHTMLFile(getCurrentDic().getHISTORY_PATH(), getCurrentDic().getHistoryVocab());
+        getCurrentDic().loadDataFromHistoryFile();
         for (Word word : getCurrentDic().getHistoryVocab()) {
             historySearch.add(word.getSearching());
         }

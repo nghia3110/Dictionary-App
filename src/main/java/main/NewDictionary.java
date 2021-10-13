@@ -18,15 +18,6 @@ public class NewDictionary {
     private ArrayList<Word> historyVocab = new ArrayList<Word>();
     private ArrayList<Word> bookmarkVocab = new ArrayList<Word>();
 
-    public NewDictionary(NewDictionary other) {
-        this.PATH = other.PATH;
-        this.HISTORY_PATH = other.getHISTORY_PATH();
-        this.BOOKMARK_PATH = other.getBOOKMARK_PATH();
-        vocab.clear();
-        loadDataFromHTMLFile(other.getPATH(), vocab);
-        loadDataFromHTMLFile(other.getHISTORY_PATH(), historyVocab);
-        loadDataFromHTMLFile(other.getBOOKMARK_PATH(), bookmarkVocab);
-    }
 
     public NewDictionary(String path, String historyPath, String bookmarkPath) {
         PATH = path;
@@ -78,6 +69,22 @@ public class NewDictionary {
         }
     }
 
+    public void loadDataFromHistoryFile(){
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(HISTORY_PATH));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(SPLITTING_PATTERN);
+                String word = parts[0];
+                String definition = SPLITTING_PATTERN + parts[1];
+                Word wordObj = new Word(word, definition);
+                historyVocab.add(wordObj);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void exportWordToHTMLFile(String path, String spelling) {
         try {
             File file = new File(path);
@@ -118,12 +125,11 @@ public class NewDictionary {
         }
     }
 
-    public void addWord(String searching, String meaning) {
+    public boolean addWord(String searching, String meaning) {
         searching = searching.toLowerCase();
         int posAddWord = binaryCheck(0, vocab.size(), searching);
         if (posAddWord == -1) {
-            System.out.println("Từ bạn thêm đã tồn tại. Hãy chọn chức năng sửa đổi!");
-            return;
+            return false;
         }
         vocab.add(new Word());
         for (int i = vocab.size() - 2; i >= posAddWord; i--) {
@@ -134,6 +140,7 @@ public class NewDictionary {
         vocab.get(posAddWord).setMeaning(meaning);
         Collections.sort(vocab);
         updateWordToFile(PATH, vocab);
+        return true;
     }
 
     public void removeWord(String searching, String path, ArrayList<Word> temp) {

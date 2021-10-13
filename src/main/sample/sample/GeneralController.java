@@ -81,22 +81,24 @@ public class GeneralController extends MainController implements Initializable {
 
     public void speak(String language) throws Exception {
         VoiceRSS.language = language;
-        VoiceRSS.speed = (int) slider.getValue();
         VoiceRSS.speakWord(headText.getText());
     }
 
     @FXML
     public void handleClickSpeaker1() throws Exception {
         if(isEVDic){
+            VoiceRSS.Name = VoiceRSS.voiceNameUK;
             speak("en-gb");
         }
         else{
+            VoiceRSS.Name = "Chi";
             speak("vi-vn");
         }
     }
 
     @FXML
     public void handleClickSpeaker2() throws Exception {
+        VoiceRSS.Name = VoiceRSS.voiceNameUS;
         speak("en-us");
     }
 
@@ -174,16 +176,34 @@ public class GeneralController extends MainController implements Initializable {
     protected void addBookmark(Word word) {
         getCurrentDic().getBookmarkVocab().add(word);
         getCurrentDic().addWordToFile(word.getSearching(), word.getMeaning(),getCurrentDic().getBOOKMARK_PATH());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Lưu từ thành công!");
+        alert.showAndWait();
     }
 
     protected void removeBookmark(Word word) {
         getCurrentDic().getBookmarkVocab().remove(word);
         getCurrentDic().updateWordToFile(getCurrentDic().getBOOKMARK_PATH(), getCurrentDic().getBookmarkVocab());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Đã xoá từ khỏi danh sách yêu thích!");
+        alert.showAndWait();
     }
 
     @FXML
     public void handleClickBookmarkButton() {
         String spelling = searchField.getText();
+        if(spelling.equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Không có từ nào được chọn!");
+            alert.showAndWait();
+            return;
+        }
         int _index = Collections.binarySearch(getCurrentDic().getVocab(), new Word(spelling, null));
         int index = Collections.binarySearch(getCurrentDic().getBookmarkVocab(), new Word(spelling, null));
         if (index < 0) {
@@ -195,6 +215,15 @@ public class GeneralController extends MainController implements Initializable {
 
     @FXML
     public void handleClickEditButton() {
+        String spelling = searchField.getText();
+        if(spelling.equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Không có từ nào được chọn!");
+            alert.showAndWait();
+            return;
+        }
         if (isOnEditDefinition) {
             isOnEditDefinition = false;
             editDefinition.setVisible(false);
@@ -204,7 +233,6 @@ public class GeneralController extends MainController implements Initializable {
         isOnEditDefinition = true;
         saveChangeButton.setVisible(true);
         editDefinition.setVisible(true);
-        String spelling = searchField.getText();
         int index = Collections.binarySearch(getCurrentDic().getVocab(), new Word(spelling, null));
         String meaning = getCurrentDic().getVocab().get(index).getMeaning();
         editDefinition.setHtmlText(meaning);
@@ -212,6 +240,11 @@ public class GeneralController extends MainController implements Initializable {
 
     @FXML
     public void handleClickSaveButton() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Sửa từ thành công!");
+        alert.showAndWait();
         editDefinition.setVisible(false);
         isOnEditDefinition = false;
         saveChangeButton.setVisible(false);
@@ -234,11 +267,26 @@ public class GeneralController extends MainController implements Initializable {
     @FXML
     public void handleClickRemoveButton() {
         String spelling = searchField.getText();
-        getCurrentDic().removeWord(spelling, getCurrentDic().getPATH(), getCurrentDic().getVocab());
-        getCurrentDic().removeWord(spelling, getCurrentDic().getHISTORY_PATH(), getCurrentDic().getHistoryVocab());
-        getCurrentDic().removeWord(spelling, getCurrentDic().getBOOKMARK_PATH(), getCurrentDic().getBookmarkVocab());
-        headText.setText("Nghĩa của từ");
-        searchField.clear();
-        definitionView.getEngine().loadContent("");
+        if(spelling.equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Không có từ nào được chọn!");
+            alert.showAndWait();
+            return;
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Bạn có chắc chắn muốn xoá từ này không?");
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.OK) {
+            getCurrentDic().removeWord(spelling, getCurrentDic().getPATH(), getCurrentDic().getVocab());
+            getCurrentDic().removeWord(spelling, getCurrentDic().getHISTORY_PATH(), getCurrentDic().getHistoryVocab());
+            getCurrentDic().removeWord(spelling, getCurrentDic().getBOOKMARK_PATH(), getCurrentDic().getBookmarkVocab());
+            headText.setText("Nghĩa của từ");
+            searchField.clear();
+            definitionView.getEngine().loadContent("");
+        }
     }
 }

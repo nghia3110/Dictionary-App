@@ -12,18 +12,19 @@ import javafx.scene.web.WebView;
 import main.Word;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.textfield.TextFields;
+
 public class Settings extends GeneralController implements Initializable {
     @FXML
-    private Button b1;
+    private TextField editTextEV;
     @FXML
-    private TextField text1;
+    private TextField editTextVE;
     @FXML
     private TextField addText;
-    @FXML
-    private Button save;
     @FXML
     private WebView web;
     @FXML
@@ -31,9 +32,9 @@ public class Settings extends GeneralController implements Initializable {
     @FXML
     private HTMLEditor addEditor;
     @FXML
-    private RadioButton av;
+    private RadioButton editEV;
     @FXML
-    private RadioButton va;
+    private RadioButton editVE;
     @FXML
     private RadioButton addEV;
     @FXML
@@ -42,33 +43,57 @@ public class Settings extends GeneralController implements Initializable {
     private ToggleGroup data;
     @FXML
     private ToggleGroup data1;
+    ArrayList<String> wordve = new ArrayList<>();
+    ArrayList<String> wordev = new ArrayList<>();
     String[] voiceUS = {"Linda", "Amy", "Mary", "John", "Mike"};
     String[] voiceUK = {"Alice", "Nancy", "Lily", "Harry"};
-    void showDefinition() {
-        edit.setVisible(false);
-        String a = text1.getText();
-        int index = Collections.binarySearch(getDictionary().getVocab(), new Word(a,null));
+
+    public void showDefinition() {
+        String a;
+        if (editEV.isSelected()) {
+            a = editTextEV.getText();
+        } else {
+            a = editTextVE.getText();
+        }
+        int index = Collections.binarySearch(getDictionary().getVocab(), new Word(a, null));
         String b = getDictionary().getVocab().get(index).getMeaning();
         web.getEngine().loadContent(b, "text/html");
 
     }
-    @FXML
-    void xemtruoc(ActionEvent event) {
-        showDefinition();
-    }
 
     @FXML
-    void edit(ActionEvent event) {
+    public void handleClickEditArrow(ActionEvent event) {
+        String a;
         edit.setVisible(true);
-        String a = text1.getText();
-        int index = Collections.binarySearch(getDictionary().getVocab(), new Word(a,null));
+        if (editEV.isSelected()) {
+            a = editTextEV.getText();
+        } else {
+            a = editTextVE.getText();
+        }
+        int index = Collections.binarySearch(getDictionary().getVocab(), new Word(a, null));
         String b = getDictionary().getVocab().get(index).getMeaning();
         edit.setHtmlText(b);
-
     }
+
+    public void addWordListEV() {
+        for (int i = 0; i < evDic.getVocab().size(); i++) {
+            wordev.add(evDic.getVocab().get(i).getSearching());
+        }
+    }
+
+    public void addWordListVE() {
+        for (int i = 0; i < veDic.getVocab().size(); i++) {
+            wordve.add(veDic.getVocab().get(i).getSearching());
+        }
+    }
+
     @FXML
-    void save(ActionEvent event) {
-        getDictionary().modifyWord(text1.getText(), edit.getHtmlText().replace(" dir=\"ltr\"", ""));
+    public void save(ActionEvent event) {
+        if (editEV.isSelected()) {
+            getDictionary().modifyWord(editTextEV.getText(), edit.getHtmlText().replace(" dir=\"ltr\"", ""));
+        } else {
+            getDictionary().modifyWord(editTextVE.getText(), edit.getHtmlText().replace(" dir=\"ltr\"", ""));
+        }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
@@ -78,47 +103,82 @@ public class Settings extends GeneralController implements Initializable {
     }
 
     @FXML
-    void remove(ActionEvent event) {
-        getDictionary().removeWord(text1.getText(), getDictionary().getPATH(), getDictionary().getVocab());
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText(null);
-        alert.setContentText("Xoá từ thành công");
-        alert.showAndWait();
+    public void remove(ActionEvent event) {
+        if (editEV.isSelected()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Bạn có chắc chắn muốn xoá từ này không?");
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) {
+                getDictionary().removeWord(editTextEV.getText(), getDictionary().getPATH(), getDictionary().getVocab());
+                editTextEV.clear();
+                edit.setHtmlText("");
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Bạn có chắc chắn muốn xoá từ này không?");
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) {
+                getDictionary().removeWord(editTextVE.getText(), getDictionary().getPATH(), getDictionary().getVocab());
+                editTextVE.clear();
+                edit.setHtmlText("");
+            }
+        }
     }
 
-    void addDefault(){
+    public void addDefault() {
         addText.clear();
-        addText.setPromptText("Nhập từ bạn muốn thêm");
+        addEditor.setHtmlText("");
+    }
+
+    @FXML
+    public void addReset() {
+        addText.clear();
         addEditor.setHtmlText("<html><ul><li><b><i> loại từ: </i></b><ul><li><font color='#cc0000'><b> Nghĩa thứ nhất: </b></font><ul></li></ul></ul></li></ul><ul><li><b><i>loại từ khác: </i></b><ul><li><font color='#cc0000'><b> Nghĩa thứ hai: </b></font></li></ul></li></ul></html>");
     }
 
     @FXML
-    void add(){
-        String meaning = addEditor.getHtmlText().replace(" dir=\"ltr\"", "");
-        getDictionaryToAdd().addWord(addText.getText(), meaning);
-        addDefault();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText(null);
-        alert.setContentText("Thêm từ thành công");
-        alert.showAndWait();
+    public void handleClickArrow() {
+        if (addText.getText().equals("")) return;
+        addEditor.setHtmlText("<html>" + addText.getText() + " /" + addText.getText() + "/"
+                + "<ul><li><b><i> loại từ: </i></b><ul><li><font color='#cc0000'><b> Nghĩa thứ nhất: </b></font><ul></li></ul></ul></li></ul><ul><li><b><i>loại từ khác: </i></b><ul><li><font color='#cc0000'><b> Nghĩa thứ hai: </b></font></li></ul></li></ul></html>");
     }
 
-    private NewDictionary getDictionaryToAdd(){
-        if(addEV.isSelected()){
-            return evDic;
+
+    @FXML
+    void add() {
+        String meaning = addEditor.getHtmlText().replace(" dir=\"ltr\"", "");
+        if (getDictionaryToAdd().addWord(addText.getText(), meaning)) {
+            addReset();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Thêm từ thành công");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Từ bạn thêm đã tồn tại! Hãy chọn chức năng sửa đổi!");
+            alert.showAndWait();
         }
-        else{
+    }
+
+    private NewDictionary getDictionaryToAdd() {
+        if (addEV.isSelected()) {
+            return evDic;
+        } else {
             return veDic;
         }
     }
 
-    private NewDictionary getDictionary(){
-        if(av.isSelected()){
+    private NewDictionary getDictionary() {
+        if (editEV.isSelected()) {
             return evDic;
-        }
-        else{
+        } else {
             return veDic;
         }
     }
@@ -126,6 +186,15 @@ public class Settings extends GeneralController implements Initializable {
     private static final String SLIDER_STYLE_FORMAT =
             "-slider-track-color: linear-gradient(to right, -slider-filled-track-color 0%%, "
                     + "-slider-filled-track-color %1$f%%, -fx-base %1$f%%, -fx-base 100%%);";
+
+    @FXML
+    void saveVoice(ActionEvent event) {
+        VoiceRSS.speed = (int) slider.getValue();
+        if (isEVDic) {
+            VoiceRSS.voiceNameUS = choiceboxus.getValue();
+            VoiceRSS.voiceNameUK = choiceboxuk.getValue();
+        }
+    }
 
     @FXML
     void voice(ActionEvent event) throws Exception {
@@ -140,12 +209,27 @@ public class Settings extends GeneralController implements Initializable {
         VoiceRSS.speed = (int) slider.getValue();
         VoiceRSS.speakWord("information");
     }
+
     @FXML
     protected void voiceus(ActionEvent event) throws Exception {
         VoiceRSS.Name = choiceboxus.getValue();
-        VoiceRSS.language="en-us";
+        VoiceRSS.language = "en-us";
         VoiceRSS.speed = (int) slider.getValue();
         VoiceRSS.speakWord("information");
+    }
+
+    @FXML
+    void handleClickEVButton(ActionEvent event) {
+        editTextEV.setVisible(true);
+        editTextVE.setVisible(false);
+        TextFields.bindAutoCompletion(editTextEV, wordev);
+    }
+
+    @FXML
+    void handleClickVEButton(ActionEvent event) {
+        editTextEV.setVisible(false);
+        editTextVE.setVisible(true);
+        TextFields.bindAutoCompletion(editTextVE, wordve);
     }
 
     @Override
@@ -156,11 +240,14 @@ public class Settings extends GeneralController implements Initializable {
                             + "-slider-filled-track-color %f%%, -fx-base %f%%, -fx-base 100%%);",
                     percentage, percentage);
         }, slider.valueProperty(), slider.minProperty(), slider.maxProperty()));
-
-        edit.setVisible(false);
-        av.setSelected(true);
+        addWordListEV();
+        addWordListVE();
+        edit.setVisible(true);
+        editEV.setSelected(true);
         addEV.setSelected(true);
-        //TextFields.bindAutoCompletion(text1, word);
+        editTextEV.setVisible(true);
+        editTextVE.setVisible(false);
+        TextFields.bindAutoCompletion(editTextEV, wordev);
         choiceboxuk.getItems().addAll(voiceUK);
         choiceboxus.getItems().addAll(voiceUS);
         choiceboxuk.setValue("Alice");
