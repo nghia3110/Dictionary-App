@@ -77,20 +77,7 @@ public class HistoryController extends GeneralController implements Initializabl
             historySearch.add(word.getSearching());
         }
         wordListView.setItems(historySearch);
-        if(isEVDic){
-            transLanguageEV.setVisible(true);
-            transLanguageVE.setVisible(false);
-            speaker1Language.setText("UK");
-            speaker2.setVisible(true);
-            speaker2Language.setVisible(true);
-        }
-        else{
-            transLanguageEV.setVisible(false);
-            transLanguageVE.setVisible(true);
-            speaker1Language.setText("VIE");
-            speaker2.setVisible(false);
-            speaker2Language.setVisible(false);
-        }
+        setLanguage();
     }
 
     @Override

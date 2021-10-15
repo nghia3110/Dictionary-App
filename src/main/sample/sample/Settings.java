@@ -89,6 +89,10 @@ public class Settings extends GeneralController implements Initializable {
 
     @FXML
     public void save(ActionEvent event) {
+        if(editTextEV.getText().equals("") && editTextVE.getText().equals("")){
+            showWarningAlert();
+            return;
+        }
         if (editEV.isSelected()) {
             getDictionary().modifyWord(editTextEV.getText(), edit.getHtmlText().replace(" dir=\"ltr\"", ""));
         } else {
@@ -104,6 +108,10 @@ public class Settings extends GeneralController implements Initializable {
 
     @FXML
     public void remove(ActionEvent event) {
+        if(editTextEV.getText().equals("") || editTextVE.getText().equals("")){
+            showWarningAlert();
+            return;
+        }
         if (editEV.isSelected()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
@@ -142,15 +150,21 @@ public class Settings extends GeneralController implements Initializable {
 
     @FXML
     public void handleClickArrow() {
-        if (addText.getText().equals("")) return;
+        if (addText.getText().equals("")) {
+            showWarningAlert();
+            return;
+        }
         addEditor.setHtmlText("<html>" + addText.getText() + " /" + addText.getText() + "/"
                 + "<ul><li><b><i> loại từ: </i></b><ul><li><font color='#cc0000'><b> Nghĩa thứ nhất: </b></font><ul></li></ul></ul></li></ul><ul><li><b><i>loại từ khác: </i></b><ul><li><font color='#cc0000'><b> Nghĩa thứ hai: </b></font></li></ul></li></ul></html>");
     }
 
-
     @FXML
     void add() {
         String meaning = addEditor.getHtmlText().replace(" dir=\"ltr\"", "");
+        if(addText.getText().equals("")){
+            showWarningAlert();
+            return;
+        }
         if (getDictionaryToAdd().addWord(addText.getText(), meaning)) {
             addReset();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -190,10 +204,8 @@ public class Settings extends GeneralController implements Initializable {
     @FXML
     void saveVoice(ActionEvent event) {
         VoiceRSS.speed = (int) slider.getValue();
-        if (isEVDic) {
-            VoiceRSS.voiceNameUS = choiceboxus.getValue();
-            VoiceRSS.voiceNameUK = choiceboxuk.getValue();
-        }
+        VoiceRSS.voiceNameUS = choiceboxus.getValue();
+        VoiceRSS.voiceNameUK = choiceboxuk.getValue();
     }
 
     @FXML
@@ -240,6 +252,7 @@ public class Settings extends GeneralController implements Initializable {
                             + "-slider-filled-track-color %f%%, -fx-base %f%%, -fx-base 100%%);",
                     percentage, percentage);
         }, slider.valueProperty(), slider.minProperty(), slider.maxProperty()));
+        slider.setValue(VoiceRSS.speed);
         addWordListEV();
         addWordListVE();
         edit.setVisible(true);
@@ -250,8 +263,8 @@ public class Settings extends GeneralController implements Initializable {
         TextFields.bindAutoCompletion(editTextEV, wordev);
         choiceboxuk.getItems().addAll(voiceUK);
         choiceboxus.getItems().addAll(voiceUS);
-        choiceboxuk.setValue("Alice");
-        choiceboxus.setValue("Linda");
+        choiceboxuk.setValue(VoiceRSS.voiceNameUK);
+        choiceboxus.setValue(VoiceRSS.voiceNameUS);
         addDefault();
     }
 }

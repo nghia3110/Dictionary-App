@@ -17,8 +17,8 @@ public class SearchPaneController extends GeneralController implements Initializ
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        setLanguage();
         for (Word temp : getCurrentDic().getVocab()) {
-            searchWordTemp.add(temp);
             searchList.add(temp.getSearching());
         }
         wordListView.setItems(searchList);
@@ -26,6 +26,9 @@ public class SearchPaneController extends GeneralController implements Initializ
 
     public void setSearchListViewItem() {
         searchList.clear();
+        if(searchField.getText().equals("")){
+            searchWordTemp.addAll(getCurrentDic().getVocab());
+        }
         for (Word temp : searchWordTemp) {
             searchList.add(temp.getSearching());
         }
@@ -51,6 +54,9 @@ public class SearchPaneController extends GeneralController implements Initializ
     @FXML
     public void showDefinition() {
         String spelling = wordListView.getSelectionModel().getSelectedItem();
+        if(spelling == null){
+            return;
+        }
         int index = Collections.binarySearch( getCurrentDic().getVocab(), new Word(spelling, null));
         String meaning =  getCurrentDic().getVocab().get(index).getMeaning();
         definitionView.getEngine().loadContent(meaning, "text/html");
@@ -72,19 +78,6 @@ public class SearchPaneController extends GeneralController implements Initializ
     public void initSearchListView() {
         wordListView.getItems().clear();
         setSearchListViewItem();
-        if(isEVDic){
-            transLanguageEV.setVisible(true);
-            transLanguageVE.setVisible(false);
-            speaker1Language.setText("UK");
-            speaker2.setVisible(true);
-            speaker2Language.setVisible(true);
-        }
-        else{
-            transLanguageEV.setVisible(false);
-            transLanguageVE.setVisible(true);
-            speaker1Language.setText("VIE");
-            speaker2.setVisible(false);
-            speaker2Language.setVisible(false);
-        }
+        setLanguage();
     }
 }

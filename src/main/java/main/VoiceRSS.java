@@ -25,7 +25,7 @@ public class VoiceRSS {
         params.setBase64(false);
         params.setLanguage(language);
         params.setVoice(Name);
-        params.setRate(-8+7*speed);
+        params.setRate((int) Math.round(-2.9936 * speed * speed + 15.2942 * speed - 12.7612));
 
         byte[] voice = tts.speech(params);
 
