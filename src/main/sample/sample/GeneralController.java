@@ -235,7 +235,7 @@ public class GeneralController extends MainController implements Initializable {
     public void handleClickEditButton() {
         String spelling = searchField.getText();
         if (spelling.equals("")) {
-           showWarningAlert();
+            showWarningAlert();
             return;
         }
         if (isOnEditDefinition) {
@@ -285,12 +285,14 @@ public class GeneralController extends MainController implements Initializable {
             showWarningAlert();
             return;
         }
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        ButtonType yes = new ButtonType("Có", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("Không", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn muốn xoá từ này không?", yes, no);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
-        alert.setContentText("Bạn có chắc chắn muốn xoá từ này không?");
         alert.showAndWait();
-        if (alert.getResult() == ButtonType.OK) {
+
+        if(alert.getResult() == yes) {
             getCurrentDic().removeWord(spelling, getCurrentDic().getPATH(), getCurrentDic().getVocab());
             getCurrentDic().removeWord(spelling, getCurrentDic().getHISTORY_PATH(), getCurrentDic().getHistoryVocab());
             getCurrentDic().removeWord(spelling, getCurrentDic().getBOOKMARK_PATH(), getCurrentDic().getBookmarkVocab());

@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import main.TranslateAPI;
 import main.VoiceRSS;
 import javafx.event.ActionEvent;
@@ -8,10 +10,18 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class TranslateController {
+public class TranslateController implements Initializable {
     String languageFrom = "";
     String languageTo = "vi";
+    String nameFrom;
+    String speakFrom;
+    String nameTo;
+    String speakTo;
+
     @FXML
     private TextArea area1;
     @FXML
@@ -20,23 +30,44 @@ public class TranslateController {
     private TextField text1;
     @FXML
     private TextField text2;
-    @FXML
-    String nameFrom;
-    String speakFrom;
-    String nameTo;
-    String speakTo;
 
     @FXML
-    void chinese(ActionEvent event) throws IOException {
-        languageTo = "zh";
-        text2.setText("Tiếng Trung");
-        nameTo = "Luli";
-        speakTo = "zh-cn";
-        area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
+    private Button langFromFirst;
+    @FXML
+    private Button langFromSecond;
+    @FXML
+    private Button langFromThird;
+    @FXML
+    private Button langFromFourth;
+
+    @FXML
+    private Button langToFirst;
+    @FXML
+    private Button langToSecond;
+    @FXML
+    private Button langToThird;
+    @FXML
+    private Button langToFourth;
+    @FXML
+    private Button langToFifth;
+
+    public void resetStyleLangFrom() {
+        langFromFirst.getStyleClass().removeAll("active");
+        langFromSecond.getStyleClass().removeAll("active");
+        langFromThird.getStyleClass().removeAll("active");
+        langFromFourth.getStyleClass().removeAll("active");
+    }
+
+    public void detect(ActionEvent event) {
+        resetStyleLangFrom();
+        langFromFirst.getStyleClass().add("active");
+        languageFrom = "";
     }
 
     @FXML
     void eng(ActionEvent event) {
+        resetStyleLangFrom();
+        langFromSecond.getStyleClass().add("active");
         languageFrom = "en";
         text1.setText("Tiếng Anh");
         nameFrom = "Linda";
@@ -44,43 +75,9 @@ public class TranslateController {
     }
 
     @FXML
-    void eng2(ActionEvent event) throws IOException {
-        text2.setText("Tiếng Anh");
-        languageTo = "en";
-        nameTo = "Linda";
-        speakTo = "en-gb";
-        area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
-    }
-
-    @FXML
-    void korea(ActionEvent event) throws IOException {
-        text1.setText("Tiếng Hàn");
-        languageFrom = "ko";
-        nameFrom = "Nari";
-        speakFrom = "ko-kr";
-
-    }
-
-    @FXML
-    void korea2(ActionEvent event) throws IOException {
-        text2.setText("Tiếng Hàn");
-        languageTo = "ko";
-        nameTo = "Nari";
-        speakTo = "ko-kr";
-        area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
-    }
-
-    @FXML
-    void rus(ActionEvent event) throws IOException {
-        text2.setText("Tiếng Nga");
-        languageTo = "ru";
-        nameTo = "Marina";
-        speakTo = "ru-ru";
-        area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
-    }
-
-    @FXML
     void vie1(ActionEvent event) {
+        resetStyleLangFrom();
+        langFromThird.getStyleClass().add("active");
         text1.setText("Tiếng Việt");
         languageFrom = "vi";
         nameFrom = "Chi";
@@ -88,40 +85,127 @@ public class TranslateController {
     }
 
     @FXML
+    void korea(ActionEvent event) throws IOException {
+        resetStyleLangFrom();
+        langFromFourth.getStyleClass().add("active");
+        text1.setText("Tiếng Hàn");
+        languageFrom = "ko";
+        nameFrom = "Nari";
+        speakFrom = "ko-kr";
+    }
+
+    public void resetStyleLangTo() {
+        langToFirst.getStyleClass().removeAll("active");
+        langToSecond.getStyleClass().removeAll("active");
+        langToThird.getStyleClass().removeAll("active");
+        langToFourth.getStyleClass().removeAll("active");
+        langToFifth.getStyleClass().removeAll("active");
+    }
+
+    @FXML
     void vie2(ActionEvent event) throws IOException {
+        resetStyleLangTo();
+        langToFirst.getStyleClass().add("active");
         text2.setText("Tiếng Việt");
         languageTo = "vi";
         nameTo = "Chi";
         speakTo = "vi-vn";
-        area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
+        if (!Objects.equals(area1.getText(), "")) {
+            area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
+        }
+    }
+
+    @FXML
+    void eng2(ActionEvent event) throws IOException {
+        resetStyleLangTo();
+        langToSecond.getStyleClass().add("active");
+        text2.setText("Tiếng Anh");
+        languageTo = "en";
+        nameTo = "Linda";
+        speakTo = "en-gb";
+        if (!Objects.equals(area1.getText(), "")) {
+            area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
+        }
+    }
+
+    @FXML
+    void korea2(ActionEvent event) throws IOException {
+        resetStyleLangTo();
+        langToThird.getStyleClass().add("active");
+        text2.setText("Tiếng Hàn");
+        languageTo = "ko";
+        nameTo = "Nari";
+        speakTo = "ko-kr";
+        if (!Objects.equals(area1.getText(), "")) {
+            area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
+        }
+    }
+
+    @FXML
+    void rus(ActionEvent event) throws IOException {
+        resetStyleLangTo();
+        langToFourth.getStyleClass().add("active");
+        text2.setText("Tiếng Nga");
+        languageTo = "ru";
+        nameTo = "Marina";
+        speakTo = "ru-ru";
+        if (!Objects.equals(area1.getText(), "")) {
+            area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
+        }
+    }
+
+    @FXML
+    void chinese(ActionEvent event) throws IOException {
+        resetStyleLangTo();
+        langToFifth.getStyleClass().add("active");
+        languageTo = "zh";
+        text2.setText("Tiếng Trung");
+        nameTo = "Luli";
+        speakTo = "zh-cn";
+        if (!Objects.equals(area1.getText(), "")) {
+            area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
+        }
     }
 
     @FXML
     void translate(ActionEvent event) throws IOException {
-        area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
-
+        if (!Objects.equals(area1.getText(), "")) {
+            area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
+        }
     }
 
     @FXML
     void speak1(ActionEvent event) throws Exception {
         VoiceRSS.Name = nameFrom;
         VoiceRSS.language = speakFrom;
-        VoiceRSS.speakWord(area1.getText());
-
+        if (!Objects.equals(area1.getText(), "")) {
+            VoiceRSS.speakWord(area1.getText());
+        }
     }
 
     @FXML
     void speak2(ActionEvent event) throws Exception {
-
         VoiceRSS.Name = nameTo;
         VoiceRSS.language = speakTo;
-        VoiceRSS.speakWord(area2.getText());
+        if (!Objects.equals(area2.getText(), "")) {
+            VoiceRSS.speakWord(area2.getText());
+        }
     }
 
-    public void detect(ActionEvent event) {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        langFromFirst.getStyleClass().add("active");
+        langToFirst.getStyleClass().add("active");
+
+        text1.setText("Phát hiện n.ngữ");
+        area1.setText("");
+        nameFrom = "Linda";
+        speakFrom = "en-gb";
         languageFrom = "";
+
+        text2.setText("Tiếng Việt");
+        nameTo = "Chi";
+        speakTo = "vi-vn";
+        languageTo = "vi";
     }
-
-
-
 }

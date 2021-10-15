@@ -113,23 +113,27 @@ public class Settings extends GeneralController implements Initializable {
             return;
         }
         if (editEV.isSelected()) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            ButtonType yes = new ButtonType("Có", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("Không", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn muốn xoá từ này không?", yes, no);
             alert.setTitle("Thông báo");
             alert.setHeaderText(null);
-            alert.setContentText("Bạn có chắc chắn muốn xoá từ này không?");
             alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
+
+            if (alert.getResult() == yes) {
                 getDictionary().removeWord(editTextEV.getText(), getDictionary().getPATH(), getDictionary().getVocab());
                 editTextEV.clear();
                 edit.setHtmlText("");
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            ButtonType yes = new ButtonType("Có", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("Không", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn muốn xoá từ này không?", yes, no);
             alert.setTitle("Thông báo");
             alert.setHeaderText(null);
-            alert.setContentText("Bạn có chắc chắn muốn xoá từ này không?");
             alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
+
+            if (alert.getResult() == yes) {
                 getDictionary().removeWord(editTextVE.getText(), getDictionary().getPATH(), getDictionary().getVocab());
                 editTextVE.clear();
                 edit.setHtmlText("");
@@ -203,14 +207,14 @@ public class Settings extends GeneralController implements Initializable {
 
     @FXML
     void saveVoice(ActionEvent event) {
-        VoiceRSS.speed = (int) slider.getValue();
+        VoiceRSS.speed = slider.getValue();
         VoiceRSS.voiceNameUS = choiceboxus.getValue();
         VoiceRSS.voiceNameUK = choiceboxuk.getValue();
     }
 
     @FXML
     void voice(ActionEvent event) throws Exception {
-        VoiceRSS.speed = (int) slider.getValue();
+        VoiceRSS.speed = slider.getValue();
         VoiceRSS.speakWord("information");
     }
 
@@ -218,7 +222,7 @@ public class Settings extends GeneralController implements Initializable {
     protected void voiceuk(ActionEvent event) throws Exception {
         VoiceRSS.Name = choiceboxuk.getValue();
         VoiceRSS.language = "en-gb";
-        VoiceRSS.speed = (int) slider.getValue();
+        VoiceRSS.speed = slider.getValue();
         VoiceRSS.speakWord("information");
     }
 
@@ -226,7 +230,7 @@ public class Settings extends GeneralController implements Initializable {
     protected void voiceus(ActionEvent event) throws Exception {
         VoiceRSS.Name = choiceboxus.getValue();
         VoiceRSS.language = "en-us";
-        VoiceRSS.speed = (int) slider.getValue();
+        VoiceRSS.speed = slider.getValue();
         VoiceRSS.speakWord("information");
     }
 

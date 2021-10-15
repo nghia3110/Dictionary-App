@@ -18,60 +18,82 @@ public class MainController implements Initializable {
     @FXML
     private AnchorPane searchPane;
     @FXML
-    private AnchorPane historyPane;
+    private AnchorPane translatePane;
     @FXML
     private AnchorPane bookmarkPane;
     @FXML
-    private AnchorPane translatePane;
+    private AnchorPane historyPane;
     @FXML
     private AnchorPane settingPane;
 
     @FXML
     private SearchPaneController searchPaneController;
     @FXML
-    private HistoryController historyController;
-    @FXML
     private BookmarkController bookmarkController;
+    @FXML
+    private HistoryController historyController;
 
     @FXML
     private Button searchButton;
     @FXML
     private Button translateButton;
     @FXML
+    private Button bookmarkButton;
+    @FXML
     private Button mainHistoryButton;
     @FXML
-    private Button bookmarkButton;
+    private Button settingButton;
+
     protected GeneralController currentController;
 
     private void setMainContent(AnchorPane anchorPane) {
         mainContent.getChildren().setAll(anchorPane);
     }
 
+    public void resetStyleNav() {
+        searchButton.getStyleClass().removeAll("active");
+        translateButton.getStyleClass().removeAll("active");
+        bookmarkButton.getStyleClass().removeAll("active");
+        mainHistoryButton.getStyleClass().removeAll("active");
+        settingButton.getStyleClass().removeAll("active");
+    }
+
     @FXML
     public void showSearchPane() {
+        resetStyleNav();
+        searchButton.getStyleClass().add("active");
         searchPaneController.initSearchListView();
         setMainContent(searchPane);
     }
 
     @FXML
-    public void showHistoryPane() {
-        historyController.initHistoryListView();
-        setMainContent(historyPane);
+    public void showTranslatePane() {
+        resetStyleNav();
+        translateButton.getStyleClass().add("active");
+        setMainContent(translatePane);
     }
+
 
     @FXML
     public void showBookmarkPane() {
+        resetStyleNav();
+        bookmarkButton.getStyleClass().add("active");
         bookmarkController.initBookmarkListView();
         setMainContent(bookmarkPane);
     }
 
     @FXML
-    public void showTranslatePane() {
-        setMainContent(translatePane);
+    public void showHistoryPane() {
+        resetStyleNav();
+        mainHistoryButton.getStyleClass().add("active");
+        historyController.initHistoryListView();
+        setMainContent(historyPane);
     }
 
     @FXML
     public void showSettingPane() {
+        resetStyleNav();
+        settingButton.getStyleClass().add("active");
         setMainContent(settingPane);
     }
 
@@ -110,7 +132,7 @@ public class MainController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        searchButton.getStyleClass().add("active");
         mainContent.getChildren().setAll(searchPane);
     }
 }
-

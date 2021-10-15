@@ -30,7 +30,7 @@
     -fx-cursor: hand;
 }
 
-.button-lang:focused {
+.button-lang.active {
     -fx-background-color: white;
     -fx-text-fill: -hover-text-color;
 }
@@ -77,22 +77,18 @@
 }
 
 .button-translate-submit:hover {
+    -fx-text-fill: white;
     -fx-background-color: -hover-purple-color;
     -fx-cursor: hand;
 }
 
 /* ========================= TextField ========================= */
 
-.text-field-lang {
+.text-field {
     -fx-background-color: white;
     -fx-font-size: 15;
 }
 
-.text-field-lang:focused {
-    -fx-background-color:white;
-    -fx-border-color: -purple-color;
-    -fx-border-radius: 3;
-}
 /* ========================= TextArea ========================= */
 
 .text-area {
@@ -107,10 +103,5 @@
 
 .text-area:focused {
     -fx-background-color:white;
-    -fx-font-size: 15;
-}
-
-.text-field {
-    -fx-background-color: white;
     -fx-font-size: 15;
 }
