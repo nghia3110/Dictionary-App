@@ -1,4 +1,0 @@
-true
-Harry
-John
-1
