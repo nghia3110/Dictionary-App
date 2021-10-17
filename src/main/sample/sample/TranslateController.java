@@ -2,17 +2,15 @@ package sample;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import main.TranslateAPI;
-import main.VoiceRSS;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import main.TranslateAPI;
+import main.VoiceRSS;
 
 public class TranslateController implements Initializable {
     String languageFrom = "";
@@ -58,14 +56,17 @@ public class TranslateController implements Initializable {
         langFromFourth.getStyleClass().removeAll("active");
     }
 
-    public void detect(ActionEvent event) {
+    public void detect() {
         resetStyleLangFrom();
         langFromFirst.getStyleClass().add("active");
         languageFrom = "";
+        text1.setText("Phát hiện n.ngữ");
+        nameFrom = "Linda";
+        speakFrom = "en-gb";
     }
 
     @FXML
-    void eng(ActionEvent event) {
+    void eng() {
         resetStyleLangFrom();
         langFromSecond.getStyleClass().add("active");
         languageFrom = "en";
@@ -75,7 +76,7 @@ public class TranslateController implements Initializable {
     }
 
     @FXML
-    void vie1(ActionEvent event) {
+    void vie1() {
         resetStyleLangFrom();
         langFromThird.getStyleClass().add("active");
         text1.setText("Tiếng Việt");
@@ -85,7 +86,7 @@ public class TranslateController implements Initializable {
     }
 
     @FXML
-    void korea(ActionEvent event) throws IOException {
+    void korea() {
         resetStyleLangFrom();
         langFromFourth.getStyleClass().add("active");
         text1.setText("Tiếng Hàn");
@@ -103,7 +104,7 @@ public class TranslateController implements Initializable {
     }
 
     @FXML
-    void vie2(ActionEvent event) throws IOException {
+    void vie2() throws IOException {
         resetStyleLangTo();
         langToFirst.getStyleClass().add("active");
         text2.setText("Tiếng Việt");
@@ -116,7 +117,7 @@ public class TranslateController implements Initializable {
     }
 
     @FXML
-    void eng2(ActionEvent event) throws IOException {
+    void eng2() throws IOException {
         resetStyleLangTo();
         langToSecond.getStyleClass().add("active");
         text2.setText("Tiếng Anh");
@@ -129,7 +130,7 @@ public class TranslateController implements Initializable {
     }
 
     @FXML
-    void korea2(ActionEvent event) throws IOException {
+    void korea2() throws IOException {
         resetStyleLangTo();
         langToThird.getStyleClass().add("active");
         text2.setText("Tiếng Hàn");
@@ -142,7 +143,7 @@ public class TranslateController implements Initializable {
     }
 
     @FXML
-    void rus(ActionEvent event) throws IOException {
+    void rus() throws IOException {
         resetStyleLangTo();
         langToFourth.getStyleClass().add("active");
         text2.setText("Tiếng Nga");
@@ -155,7 +156,7 @@ public class TranslateController implements Initializable {
     }
 
     @FXML
-    void chinese(ActionEvent event) throws IOException {
+    void chinese() throws IOException {
         resetStyleLangTo();
         langToFifth.getStyleClass().add("active");
         languageTo = "zh";
@@ -168,14 +169,14 @@ public class TranslateController implements Initializable {
     }
 
     @FXML
-    void translate(ActionEvent event) throws IOException {
+    void translate() throws IOException {
         if (!Objects.equals(area1.getText(), "")) {
             area2.setText(TranslateAPI.googleTranslate(languageFrom, languageTo, area1.getText()));
         }
     }
 
     @FXML
-    void speak1(ActionEvent event) throws Exception {
+    void speak1() throws Exception {
         VoiceRSS.Name = nameFrom;
         VoiceRSS.language = speakFrom;
         if (!Objects.equals(area1.getText(), "")) {
@@ -184,7 +185,7 @@ public class TranslateController implements Initializable {
     }
 
     @FXML
-    void speak2(ActionEvent event) throws Exception {
+    void speak2() throws Exception {
         VoiceRSS.Name = nameTo;
         VoiceRSS.language = speakTo;
         if (!Objects.equals(area2.getText(), "")) {

@@ -60,7 +60,7 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="22.0" prefWidth="57.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#showSettingPane" prefHeight="36.0" prefWidth="57.0" textFill="#8e9297">
+            <Button fx:id="settingButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#showSettingPane" prefHeight="36.0" prefWidth="57.0" textFill="#8e9297">
                <font>
                   <Font size="7.0" />
                </font>
@@ -71,6 +71,6 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane fx:id="mainContent" layoutX="58.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.leftAnchor="59.0" />
+      <AnchorPane fx:id="mainContent" layoutX="57.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

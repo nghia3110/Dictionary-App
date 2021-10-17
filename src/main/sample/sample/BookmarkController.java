@@ -2,7 +2,6 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import main.Word;
 
 import java.net.URL;
@@ -11,7 +10,7 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class BookmarkController extends GeneralController implements Initializable {
-    private ArrayList<Word> bookmarkWordTemp = new ArrayList<Word>();
+    private final ArrayList<Word> bookmarkWordTemp = new ArrayList<>();
 
     private void setBookmarkListViewItem() {
         bookmarkSearch.clear();
@@ -40,7 +39,7 @@ public class BookmarkController extends GeneralController implements Initializab
         definitionView.getEngine().loadContent(meaning, "text/html");
     }
 
-    public void clearPane(){
+    public void clearPane() {
         searchField.clear();
         definitionView.getEngine().loadContent("");
         bookmarkSearch.clear();
@@ -53,7 +52,7 @@ public class BookmarkController extends GeneralController implements Initializab
     }
 
     @FXML
-    public void handleClickTransButton(){
+    public void handleClickTransButton() {
         super.handleClickTransButton();
         clearPane();
     }
@@ -72,17 +71,14 @@ public class BookmarkController extends GeneralController implements Initializab
     @FXML
     public void handleClickBookmarkButton() {
         String spelling = searchField.getText();
-        if(spelling.equals("")){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText(null);
-            alert.setContentText("Không có từ nào được chọn!");
-            alert.showAndWait();
+        if (spelling.equals("")) {
+            showWarningAlert();
             return;
         }
         int index = Collections.binarySearch(getCurrentDic().getBookmarkVocab(), new Word(spelling, null));
         removeBookmark(getCurrentDic().getBookmarkVocab().get(index));
         searchField.clear();
+        headText.setText("Nghĩa của từ");
         definitionView.getEngine().loadContent("");
         bookmarkSearch.clear();
         wordListView.getItems().clear();

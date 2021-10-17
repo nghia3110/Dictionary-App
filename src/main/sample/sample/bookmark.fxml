@@ -11,7 +11,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="second-color" stylesheets="@../style/search.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HistoryController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="second-color" stylesheets="@../style/search.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.BookmarkController">
     <children>
         <AnchorPane layoutY="-3.0" prefHeight="459.0" prefWidth="257.0" styleClass="second-color" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-3.0">
             <children>
@@ -23,21 +23,21 @@
                                 <Button fx:id="transLanguageVE" ellipsisString="" layoutX="-1.0" mnemonicParsing="false" onAction="#handleClickTransButton" styleClass="button-viet-eng" visible="false" />
                             </children>
                         </AnchorPane>
-                        <TextField fx:id="searchField" onKeyReleased="#handleHistorySearchBar" prefHeight="35.0" prefWidth="219.0" promptText="Search" />
+                        <TextField fx:id="searchField" onKeyReleased="#handleBookmarkSearchBar" prefHeight="35.0" prefWidth="219.0" promptText="Search" />
                     </children>
                 </HBox>
                 <VBox layoutX="19.0" layoutY="58.0" prefHeight="525.0" prefWidth="219.0" style="-fx-background-radius: 3;" styleClass="third-color" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="58.0">
                     <children>
-                        <ListView fx:id="wordListView" onMouseClicked="#handleClickListView" onMousePressed="#showHistoryWordDefinition" prefHeight="529.0" prefWidth="236.0" style="-fx-background-color: none;" />
+                        <ListView fx:id="wordListView" onMouseClicked="#handleClickListView" onMousePressed="#showBookmarkWordDefinition" prefHeight="529.0" prefWidth="236.0" style="-fx-background-color: none;" />
                     </children>
                 </VBox>
             </children>
         </AnchorPane>
         <AnchorPane layoutX="254.0" layoutY="14.0" prefHeight="565.0" prefWidth="492.0" style="-fx-background-radius: 3;" styleClass="first-color" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="254.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="14.0">
             <children>
-                <HBox layoutX="25.0" layoutY="17.0" prefHeight="40.0" prefWidth="243.0">
+                <HBox layoutX="25.0" layoutY="17.0" prefHeight="40.0" prefWidth="367.0">
                     <children>
-                        <Label fx:id="headText" prefHeight="43.0" prefWidth="136.0" styleClass="title-meaning" text="Nghĩa của từ" textFill="#902929">
+                        <Label fx:id="headText" prefHeight="40.0" prefWidth="367.0" styleClass="title-meaning" text="Nghĩa của từ" textFill="#902929">
                             <font>
                                 <Font size="10.0" />
                             </font>
@@ -90,7 +90,7 @@
                         <Font size="7.0" />
                      </font>
                   </Button>
-                  <Button fx:id="removeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleClickRemoveButton" prefHeight="32.0" prefWidth="57.0" styleClass="button-remove" textFill="#8e9297">
+                  <Button fx:id="removeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleClickRemoveButton" prefHeight="35.0" prefWidth="57.0" styleClass="button-remove" textFill="#8e9297">
                      <font>
                         <Font size="7.0" />
                      </font>

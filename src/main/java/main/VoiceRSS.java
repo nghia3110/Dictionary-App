@@ -18,7 +18,7 @@ public class VoiceRSS {
     public static String voiceNameUK;
     public static String language = "en-gb";
     public static String Name = "Linda";
-    public static int speed = 1;
+    public static double speed = 1;
     public static void speakWord(String word) throws Exception {
         VoiceProvider tts = new VoiceProvider(API_KEY);
         VoiceParameters params = new VoiceParameters(word, AudioFormat.Format_44KHZ.AF_44khz_16bit_stereo);
@@ -37,14 +37,6 @@ public class VoiceRSS {
         InputStream input = new FileInputStream(AUDIO_PATH);
         AudioStream audio = new AudioStream(input);
         AudioPlayer.player.start(audio);
-    }
-
-    public static void main (String[] args) throws Exception {
-        String[] voiceUS = {"Linda", "Amy", "Mary", "John", "Mike"};
-        String[] voiceUK = {"Alice", "Nancy", "Lily", "Harry"};
-        String[] voiceVN = {"Chi"};
-        speakWord("information");
-        // speakWord("Xin chào tất cả các bạn", "vi-vn", voiceVN[0], 0);
     }
 }
 

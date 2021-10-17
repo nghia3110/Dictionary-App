@@ -3,7 +3,6 @@ package sample;
 import main.NewDictionary;
 import main.VoiceRSS;
 import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -14,11 +13,12 @@ import main.Word;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
-public class Settings extends GeneralController implements Initializable {
+public class SettingController extends GeneralController implements Initializable {
     @FXML
     private TextField editTextEV;
     @FXML
@@ -34,17 +34,10 @@ public class Settings extends GeneralController implements Initializable {
     @FXML
     private RadioButton editEV;
     @FXML
-    private RadioButton editVE;
-    @FXML
     private RadioButton addEV;
-    @FXML
-    private RadioButton addVE;
-    @FXML
-    private ToggleGroup data;
-    @FXML
-    private ToggleGroup data1;
-    ArrayList<String> wordve = new ArrayList<>();
-    ArrayList<String> wordev = new ArrayList<>();
+
+    ArrayList<String> wordVE = new ArrayList<>();
+    ArrayList<String> wordEV = new ArrayList<>();
     String[] voiceUS = {"Linda", "Amy", "Mary", "John", "Mike"};
     String[] voiceUK = {"Alice", "Nancy", "Lily", "Harry"};
 
@@ -62,7 +55,7 @@ public class Settings extends GeneralController implements Initializable {
     }
 
     @FXML
-    public void handleClickEditArrow(ActionEvent event) {
+    public void handleClickEditArrow() {
         String a;
         edit.setVisible(true);
         if (editEV.isSelected()) {
@@ -77,19 +70,19 @@ public class Settings extends GeneralController implements Initializable {
 
     public void addWordListEV() {
         for (int i = 0; i < evDic.getVocab().size(); i++) {
-            wordev.add(evDic.getVocab().get(i).getSearching());
+            wordEV.add(evDic.getVocab().get(i).getSearching());
         }
     }
 
     public void addWordListVE() {
         for (int i = 0; i < veDic.getVocab().size(); i++) {
-            wordve.add(veDic.getVocab().get(i).getSearching());
+            wordVE.add(veDic.getVocab().get(i).getSearching());
         }
     }
 
     @FXML
-    public void save(ActionEvent event) {
-        if(editTextEV.getText().equals("") && editTextVE.getText().equals("")){
+    public void save() {
+        if (editTextEV.getText().equals("") && editTextVE.getText().equals("")) {
             showWarningAlert();
             return;
         }
@@ -107,8 +100,8 @@ public class Settings extends GeneralController implements Initializable {
     }
 
     @FXML
-    public void remove(ActionEvent event) {
-        if(editTextEV.getText().equals("") || editTextVE.getText().equals("")){
+    public void remove() {
+        if (editTextEV.getText().equals("") || editTextVE.getText().equals("")) {
             showWarningAlert();
             return;
         }
@@ -148,8 +141,8 @@ public class Settings extends GeneralController implements Initializable {
 
     @FXML
     public void addReset() {
-        addText.clear();
-        addEditor.setHtmlText("<html><ul><li><b><i> loại từ: </i></b><ul><li><font color='#cc0000'><b> Nghĩa thứ nhất: </b></font><ul></li></ul></ul></li></ul><ul><li><b><i>loại từ khác: </i></b><ul><li><font color='#cc0000'><b> Nghĩa thứ hai: </b></font></li></ul></li></ul></html>");
+        addEditor.setHtmlText("<html>" + addText.getText() + " /" + addText.getText() + "/"
+                + "<ul><li><b><i> loại từ: </i></b><ul><li><font color='#cc0000'><b> Nghĩa thứ nhất: </b></font><ul></li></ul></ul></li></ul><ul><li><b><i>loại từ khác: </i></b><ul><li><font color='#cc0000'><b> Nghĩa thứ hai: </b></font></li></ul></li></ul></html>");
     }
 
     @FXML
@@ -165,7 +158,7 @@ public class Settings extends GeneralController implements Initializable {
     @FXML
     void add() {
         String meaning = addEditor.getHtmlText().replace(" dir=\"ltr\"", "");
-        if(addText.getText().equals("")){
+        if (addText.getText().equals("")) {
             showWarningAlert();
             return;
         }
@@ -206,56 +199,55 @@ public class Settings extends GeneralController implements Initializable {
                     + "-slider-filled-track-color %1$f%%, -fx-base %1$f%%, -fx-base 100%%);";
 
     @FXML
-    void saveVoice(ActionEvent event) {
+    void saveVoice() {
         VoiceRSS.speed = slider.getValue();
-        VoiceRSS.voiceNameUS = choiceboxus.getValue();
-        VoiceRSS.voiceNameUK = choiceboxuk.getValue();
+        VoiceRSS.voiceNameUS = choiceBoxUS.getValue();
+        VoiceRSS.voiceNameUK = choiceBoxUK.getValue();
     }
 
     @FXML
-    void voice(ActionEvent event) throws Exception {
+    void voice() throws Exception {
         VoiceRSS.speed = slider.getValue();
         VoiceRSS.speakWord("information");
     }
 
     @FXML
-    protected void voiceuk(ActionEvent event) throws Exception {
-        VoiceRSS.Name = choiceboxuk.getValue();
+    protected void voiceuk() throws Exception {
+        VoiceRSS.Name = choiceBoxUK.getValue();
         VoiceRSS.language = "en-gb";
         VoiceRSS.speed = slider.getValue();
         VoiceRSS.speakWord("information");
     }
 
     @FXML
-    protected void voiceus(ActionEvent event) throws Exception {
-        VoiceRSS.Name = choiceboxus.getValue();
+    protected void voiceus() throws Exception {
+        VoiceRSS.Name = choiceBoxUS.getValue();
         VoiceRSS.language = "en-us";
         VoiceRSS.speed = slider.getValue();
         VoiceRSS.speakWord("information");
     }
 
     @FXML
-    void handleClickEVButton(ActionEvent event) {
+    void handleClickEVButton() {
         editTextEV.setVisible(true);
         editTextVE.setVisible(false);
-        TextFields.bindAutoCompletion(editTextEV, wordev);
+        TextFields.bindAutoCompletion(editTextEV, wordEV);
     }
 
     @FXML
-    void handleClickVEButton(ActionEvent event) {
+    void handleClickVEButton() {
         editTextEV.setVisible(false);
         editTextVE.setVisible(true);
-        TextFields.bindAutoCompletion(editTextVE, wordve);
+        TextFields.bindAutoCompletion(editTextVE, wordVE);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         slider.styleProperty().bind(Bindings.createStringBinding(() -> {
             double percentage = (slider.getValue() - slider.getMin()) / (slider.getMax() - slider.getMin()) * 100.0;
-            return String.format("-slider-track-color: linear-gradient(to right, -slider-filled-track-color 0%%, "
-                            + "-slider-filled-track-color %f%%, -fx-base %f%%, -fx-base 100%%);",
-                    percentage, percentage);
+            return String.format(Locale.US, SLIDER_STYLE_FORMAT, percentage);
         }, slider.valueProperty(), slider.minProperty(), slider.maxProperty()));
+
         slider.setValue(VoiceRSS.speed);
         addWordListEV();
         addWordListVE();
@@ -264,11 +256,12 @@ public class Settings extends GeneralController implements Initializable {
         addEV.setSelected(true);
         editTextEV.setVisible(true);
         editTextVE.setVisible(false);
-        TextFields.bindAutoCompletion(editTextEV, wordev);
-        choiceboxuk.getItems().addAll(voiceUK);
-        choiceboxus.getItems().addAll(voiceUS);
-        choiceboxuk.setValue(VoiceRSS.voiceNameUK);
-        choiceboxus.setValue(VoiceRSS.voiceNameUS);
+
+        TextFields.bindAutoCompletion(editTextEV, wordEV);
+        choiceBoxUK.getItems().addAll(voiceUK);
+        choiceBoxUS.getItems().addAll(voiceUS);
+        choiceBoxUK.setValue(VoiceRSS.voiceNameUK);
+        choiceBoxUS.setValue(VoiceRSS.voiceNameUS);
         addDefault();
     }
 }

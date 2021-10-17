@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class NewDictionary {
-    private String PATH;
+    private final String PATH;
     private static final String SPLITTING_PATTERN = "<html>";
-    private String HISTORY_PATH;
-    private String BOOKMARK_PATH;
+    private final String HISTORY_PATH;
+    private final String BOOKMARK_PATH;
 
-    private ArrayList<Word> vocab = new ArrayList<Word>();
-    private ArrayList<Word> historyVocab = new ArrayList<Word>();
-    private ArrayList<Word> bookmarkVocab = new ArrayList<Word>();
+    private final ArrayList<Word> vocab = new ArrayList<>();
+    private final ArrayList<Word> historyVocab = new ArrayList<>();
+    private final ArrayList<Word> bookmarkVocab = new ArrayList<>();
 
 
     public NewDictionary(String path, String historyPath, String bookmarkPath) {

@@ -16,7 +16,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="second-color" stylesheets="@../style/setting.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Settings">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="second-color" stylesheets="@../style/setting.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.SettingController">
     <children>
         <VBox layoutY="9.0" prefHeight="591.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0">
             <children>
@@ -34,12 +34,12 @@
                                                         <Label layoutX="1.0" layoutY="167.0" styleClass="text-label" text="Anh - Mỹ" />
                                                         <Label layoutX="1.0" layoutY="261.0" styleClass="text-label" text="Tốc độ" />
                                                         <Slider fx:id="slider" blockIncrement="0.125" layoutX="53.0" layoutY="293.0" majorTickUnit="0.5" max="2.0" min="0.5" minorTickCount="1" showTickLabels="true" showTickMarks="true" value="1.0" />
-                                                        <ChoiceBox fx:id="choiceboxuk" layoutX="51.0" layoutY="116.0" prefWidth="150.0" />
-                                                        <ChoiceBox fx:id="choiceboxus" layoutX="51.0" layoutY="207.0" prefWidth="150.0" />
+                                                        <ChoiceBox fx:id="choiceBoxUK" layoutX="51.0" layoutY="116.0" prefWidth="150.0" />
+                                                        <ChoiceBox fx:id="choiceBoxUS" layoutX="51.0" layoutY="207.0" prefWidth="150.0" />
                                                         <Button ellipsisString="" layoutX="221.0" layoutY="298.0" mnemonicParsing="false" onAction="#voice" styleClass="button-speak" />
                                                         <Button ellipsisString="" layoutX="221.0" layoutY="205.0" mnemonicParsing="false" onAction="#voiceus" styleClass="button-speak" />
                                                         <Button ellipsisString="" layoutX="221.0" layoutY="114.0" mnemonicParsing="false" onAction="#voiceuk" styleClass="button-speak" />
-                                          <Button onAction="#saveVoice" layoutX="78.0" layoutY="387.0" mnemonicParsing="false" styleClass="button-main" text="Lưu" />
+                                          <Button layoutX="78.0" layoutY="387.0" mnemonicParsing="false" onAction="#saveVoice" styleClass="button-main" text="Lưu" />
                                                     </children>
                                                 </AnchorPane>
                                             </children>
@@ -65,8 +65,8 @@
                                                         <RadioButton fx:id="addVE" layoutX="227.0" layoutY="66.0" mnemonicParsing="false" text="Việt - Anh" toggleGroup="$data1">
                                                         </RadioButton>
                                                         <Label layoutX="396.0" layoutY="25.0" prefHeight="25.0" prefWidth="66.0" styleClass="text-label" text="Từ vựng" />
-                                                          <TextField fx:id="addText" layoutX="396.0" layoutY="59.0" prefHeight="35.0" prefWidth="187.0" styleClass="text-field-add" />
-                                                          <Button onAction="#handleClickArrow" ellipsisString="" layoutX="582.0" layoutY="59.0" mnemonicParsing="false" prefHeight="35.0" styleClass="button-arrow" />
+                                                          <TextField fx:id="addText" layoutX="396.0" layoutY="59.0" prefHeight="35.0" prefWidth="187.0" />
+                                                          <Button ellipsisString="" layoutX="582.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleClickArrow" prefHeight="35.0" styleClass="button-arrow" />
                                                         <HBox alignment="CENTER_RIGHT" layoutX="561.0" layoutY="124.0" prefHeight="39.0" prefWidth="103.0">
                                                             <children>
                                                                 <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#add" prefHeight="39.0" prefWidth="54.0" styleClass="button-save" textFill="#4d99f5">
@@ -74,7 +74,7 @@
                                                                         <Font size="7.0" />
                                                                     </font>
                                                                 </Button>
-                                                                <Button onAction="#addReset" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="58.0" prefWidth="57.0" styleClass="button-reset" textFill="#8e9297">
+                                                                <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#addReset" prefHeight="58.0" prefWidth="57.0" styleClass="button-reset" textFill="#8e9297">
                                                                     <font>
                                                                         <Font size="7.0" />
                                                                     </font>
@@ -104,17 +104,17 @@
                                                 <AnchorPane prefHeight="542.0" prefWidth="690.0">
                                                     <children>
                                                         <Label layoutX="86.0" layoutY="25.0" styleClass="text-label" text="Từ điển" />
-                                                        <RadioButton onAction="#handleClickEVButton" fx:id="editEV" layoutX="86.0" layoutY="66.0" mnemonicParsing="false" text="Anh - Việt">
+                                                        <RadioButton fx:id="editEV" layoutX="86.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleClickEVButton" text="Anh - Việt">
                                                             <toggleGroup>
                                                                 <ToggleGroup fx:id="data" />
                                                             </toggleGroup>
                                                         </RadioButton>
-                                                        <RadioButton onAction="#handleClickVEButton" fx:id="editVE" layoutX="227.0" layoutY="66.0" mnemonicParsing="false" text="Việt - Anh" toggleGroup="$data">
+                                                        <RadioButton fx:id="editVE" layoutX="227.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleClickVEButton" text="Việt - Anh" toggleGroup="$data">
                                                         </RadioButton>
                                                         <Label layoutX="396.0" layoutY="25.0" prefHeight="25.0" prefWidth="66.0" styleClass="text-label" text="Từ vựng" />
-                                          <TextField fx:id="editTextEV" layoutX="396.0" layoutY="59.0" prefHeight="35.0" prefWidth="187.0" styleClass="text-field-add" />
-                                          <TextField fx:id="editTextVE" layoutX="396.0" layoutY="59.0" prefHeight="35.0" prefWidth="187.0" styleClass="text-field-add" />
-                                          <Button onAction="#handleClickEditArrow" ellipsisString="" layoutX="582.0" layoutY="59.0" mnemonicParsing="false" prefHeight="35.0" styleClass="button-arrow" />
+                                          <TextField fx:id="editTextEV" layoutX="396.0" layoutY="59.0" prefHeight="35.0" prefWidth="187.0" styleClass="text-field-edit" />
+                                          <TextField fx:id="editTextVE" layoutX="396.0" layoutY="59.0" prefHeight="35.0" prefWidth="187.0" styleClass="text-field-edit" />
+                                          <Button ellipsisString="" layoutX="582.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleClickEditArrow" prefHeight="35.0" styleClass="button-arrow" />
                                                         <HBox alignment="CENTER_RIGHT" layoutX="561.0" layoutY="124.0" prefHeight="39.0" prefWidth="103.0">
                                                             <children>
                                                                 <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#save" prefHeight="39.0" prefWidth="54.0" styleClass="button-save" textFill="#4d99f5">

@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="second-color" stylesheets="@../style/translate.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TranslateController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="second-color" stylesheets="@../style/translate.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.TranslateController">
     <children>
         <VBox layoutX="29.0" layoutY="29.0" prefHeight="224.0" prefWidth="708.0" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="29.0">
             <children>
                 <HBox prefHeight="30.0" prefWidth="708.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#detect" prefHeight="30.0" prefWidth="145.0" styleClass="button-lang" text="Phát hiện ngôn ngữ" />
-                        <Button minWidth="44.0" mnemonicParsing="false" onAction="#eng" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Anh" />
-                        <Button minWidth="44.0" mnemonicParsing="false" onAction="#vie1" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Việt" />
-                        <Button minWidth="44.0" mnemonicParsing="false" onAction="#korea" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Hàn" />
+                        <Button fx:id="langFromFirst" mnemonicParsing="false" onAction="#detect" prefHeight="30.0" prefWidth="145.0" styleClass="button-lang" text="Phát hiện ngôn ngữ" />
+                        <Button fx:id="langFromSecond" minWidth="44.0" mnemonicParsing="false" onAction="#eng" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Anh" />
+                        <Button fx:id="langFromThird" minWidth="44.0" mnemonicParsing="false" onAction="#vie1" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Việt" />
+                        <Button fx:id="langFromFourth" minWidth="44.0" mnemonicParsing="false" onAction="#korea" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Hàn" />
                         <Button mnemonicParsing="false" onAction="#speak1" styleClass="button-speak" />
                     </children>
                 </HBox>
                 <TextArea fx:id="area1" prefHeight="194.0" prefWidth="708.0" promptText="Nhập từ hoặc đoạn văn..." />
             </children>
         </VBox>
-      <HBox alignment="CENTER" layoutX="29.0" layoutY="262.0" prefHeight="65.0" prefWidth="708.0">
+      <HBox alignment="CENTER" layoutX="29.0" layoutY="262.0" prefHeight="65.0" prefWidth="743.0" AnchorPane.bottomAnchor="273.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="262.0">
          <children>
             <TextField fx:id="text1" prefHeight="31.0" prefWidth="130.0" styleClass="text-field-lang" />
             <Button alignment="CENTER" mnemonicParsing="false" styleClass="button-double-arrow" />
@@ -39,11 +39,11 @@
             <children>
                 <HBox prefHeight="30.0" prefWidth="708.0">
                     <children>
-                        <Button minWidth="44.0" mnemonicParsing="false" onAction="#vie2" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Việt" />
-                        <Button minWidth="44.0" mnemonicParsing="false" onAction="#eng2" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Anh" />
-                        <Button minWidth="44.0" mnemonicParsing="false" onAction="#korea2" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Hàn" />
-                        <Button minWidth="44.0" mnemonicParsing="false" onAction="#rus" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Nga" />
-                        <Button minWidth="44.0" mnemonicParsing="false" onAction="#chinese" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Trung" />
+                        <Button fx:id="langToFirst" minWidth="44.0" mnemonicParsing="false" onAction="#vie2" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Việt" />
+                        <Button fx:id="langToSecond" minWidth="44.0" mnemonicParsing="false" onAction="#eng2" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Anh" />
+                        <Button fx:id="langToThird" minWidth="44.0" mnemonicParsing="false" onAction="#korea2" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Hàn" />
+                        <Button fx:id="langToFourth" minWidth="44.0" mnemonicParsing="false" onAction="#rus" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Nga" />
+                        <Button fx:id="langToFifth" minWidth="44.0" mnemonicParsing="false" onAction="#chinese" prefHeight="30.0" prefWidth="94.0" styleClass="button-lang" text="Tiếng Trung" />
                         <Button mnemonicParsing="false" onAction="#speak2" styleClass="button-speak" />
                     </children>
                 </HBox>

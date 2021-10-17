@@ -6,11 +6,10 @@ import main.Word;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class HistoryController extends GeneralController implements Initializable {
-    private ArrayList<Word> historyWordTemp = new ArrayList<Word>();
+    private final ArrayList<Word> historyWordTemp = new ArrayList<>();
 
     private void setHistoryListViewItem() {
         historySearch.clear();
@@ -34,7 +33,13 @@ public class HistoryController extends GeneralController implements Initializabl
     @FXML
     private void showHistoryWordDefinition() {
         String spelling = wordListView.getSelectionModel().getSelectedItem();
-        int index = Collections.binarySearch(getCurrentDic().getHistoryVocab(), new Word(spelling, null));
+        int index = 0;
+        for (int i = 0; i < getCurrentDic().getHistoryVocab().size(); i++) {
+            if (getCurrentDic().getHistoryVocab().get(i).getSearching().equals(spelling)) {
+                index = i;
+                break;
+            }
+        }
         String meaning = getCurrentDic().getHistoryVocab().get(index).getMeaning();
         definitionView.getEngine().loadContent(meaning, "text/html");
     }
@@ -50,7 +55,7 @@ public class HistoryController extends GeneralController implements Initializabl
         wordListView.setItems(historySearch);
     }
 
-    public void clearPane(){
+    public void clearPane() {
         searchField.clear();
         definitionView.getEngine().loadContent("");
         historySearch.clear();
@@ -63,7 +68,7 @@ public class HistoryController extends GeneralController implements Initializabl
     }
 
     @FXML
-    public void handleClickTransButton(){
+    public void handleClickTransButton() {
         super.handleClickTransButton();
         clearPane();
     }
@@ -73,8 +78,8 @@ public class HistoryController extends GeneralController implements Initializabl
         getCurrentDic().getHistoryVocab().clear();
         wordListView.getItems().clear();
         getCurrentDic().loadDataFromHistoryFile();
-        for (Word word : getCurrentDic().getHistoryVocab()) {
-            historySearch.add(word.getSearching());
+        for (int i = getCurrentDic().getHistoryVocab().size() - 1; i >= 0; i--) {
+            historySearch.add(getCurrentDic().getHistoryVocab().get(i).getSearching());
         }
         wordListView.setItems(historySearch);
         setLanguage();

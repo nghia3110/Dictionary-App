@@ -46,13 +46,7 @@
 
 /* ========================= ListView ========================= */
 
-.list-cell:odd { 
-    -fx-background-color: none;
-    -fx-text-fill: -text-color;
-    -fx-font-size: 13;
-}
-
-.list-cell:even { 
+.list-cell {
     -fx-background-color: none;
     -fx-text-fill: -text-color;
     -fx-font-size: 13;
@@ -90,8 +84,7 @@
     -fx-pref-width: 100;
     -fx-border-color: -purple-color; 
     -fx-border-radius: 3;   
-    -fx-focus-color: none;
-
+    -fx-focus-color: transparent;
     -fx-font-size: 12;
 }
  
@@ -101,13 +94,18 @@
 
 /* ========================= Button ========================= */
 
+.button {
+    -fx-pref-width: 35;
+    -fx-pref-height: 35;
+    -fx-padding: 0;
+}
+
 .button-eng-viet {
     -fx-graphic: url('../resource/media/normal/eng-viet.png');
     -fx-background-color: #e3e5e8;
     -fx-background-radius: 3 0 0 3;
     -fx-border-width: 0;
     -fx-padding: 2;
-    -fx-cursor: hand;
 }
 
 .button-viet-eng {
@@ -116,13 +114,11 @@
     -fx-background-radius: 3 0 0 3;
     -fx-border-width: 0;
     -fx-padding: 2;
-    -fx-cursor: hand;
 }
 
 .button-speak {
     -fx-background-image: url('../resource/media/normal/speak.png');
     -fx-background-size: 15;
-    -fx-background-color: none;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-pref-width: 20;
@@ -131,66 +127,45 @@
 
 .button-speak:hover {
     -fx-background-image: url('../resource/media/hover/speak.png');
-    -fx-text-fill: -hover-text-color;
-    -fx-cursor: hand;
-}
-
-.button-favourite {
-    -fx-graphic: url('../resource/media/normal/favourite.png');
     -fx-background-color: none;
-    -fx-pref-width: 35;
-    -fx-pref-height: 35;
-    -fx-padding: 0;
 }
 
-.button-favourite:hover {
+.button-favourite-false {
+    -fx-graphic: url('../resource/media/normal/favourite.png');
+}
+
+.button-favourite-false:hover {
     -fx-graphic: url('../resource/media/hover/favourite.png');
-    -fx-background-color: -hover-background-color;
-    -fx-text-fill: -hover-text-color;
-    -fx-cursor: hand;
+}
+
+.button-favourite-true {
+    -fx-graphic: url('../resource/media/hover/favourite.png');
+}
+
+.button-favourite-true:hover {
+    -fx-graphic: url('../resource/media/normal/favourite.png');
 }
 
 .button-save {
     -fx-graphic: url('../resource/media/normal/save.png');
-    -fx-background-color: none;
-    -fx-pref-width: 35;
-    -fx-pref-height: 35;
-    -fx-padding: 0;
 }
 
 .button-save:hover {
     -fx-graphic: url('../resource/media/hover/save.png');
-    -fx-background-color: -hover-background-color;
-    -fx-text-fill: -hover-text-color;
-    -fx-cursor: hand;
 }
 
 .button-edit {
     -fx-graphic: url('../resource/media/normal/edit.png');
-    -fx-background-color: none;
-    -fx-pref-width: 35;
-    -fx-pref-height: 35;
-    -fx-padding: 0;
 }
 
 .button-edit:hover {
     -fx-graphic: url('../resource/media/hover/edit.png');
-    -fx-background-color: -hover-background-color;
-    -fx-text-fill: -hover-text-color;
-    -fx-cursor: hand;
 }
 
 .button-remove {
     -fx-graphic: url('../resource/media/normal/remove.png');
-    -fx-background-color: none;
-    -fx-pref-width: 35;
-    -fx-pref-height: 35;
-    -fx-padding: 0;
 }
 
 .button-remove:hover {
     -fx-graphic: url('../resource/media/hover/remove.png');
-    -fx-background-color: -hover-background-color;
-    -fx-text-fill: -hover-text-color;
-    -fx-cursor: hand;
 }

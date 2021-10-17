@@ -58,7 +58,7 @@
 
 /* ========================= Slider ========================= */
  
-.slider{
+.slider {
     -fx-pref-width: 150;
     -slider-filled-track-color: -purple-color;
     -slider-track-color: -gray-color;
@@ -88,9 +88,15 @@
 
 /* ========================= Button ========================= */
 
+.button {
+    -fx-pref-width: 35;
+    -fx-pref-height: 35;
+    -fx-padding: 0;
+}
+
 .button-main {
     -fx-background-color: -purple-color;
-    -fx-min-width: 100;
+    -fx-pref-width: 100;
     -fx-border-radius: 3;
     -fx-padding: 6;
     -fx-text-fill: white;
@@ -100,7 +106,7 @@
 
 .button-main:hover {
     -fx-background-color: -hover-purple-color;
-    -fx-cursor: hand;
+    -fx-text-fill: white;
 }
 
 .button-speak {
@@ -108,16 +114,12 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 20;
-    -fx-background-color: none;
     -fx-pref-width: 30;
     -fx-pref-height: 30;
 }
 
 .button-speak:hover {
     -fx-background-image: url('../resource/media/hover/speak.png');
-    -fx-background-color: -hover-background-color;
-    -fx-text-fill: -hover-text-color;
-    -fx-cursor: hand;
 }
 
 .button-arrow {
@@ -133,53 +135,30 @@
 
 .button-arrow:hover {
     -fx-background-color: -hover-purple-color;
-    -fx-cursor: hand;
 }
 
 .button-save {
     -fx-graphic: url('../resource/media/normal/save.png');
-    -fx-background-color: none;
-    -fx-pref-width: 35;
-    -fx-pref-height: 35;
-    -fx-padding: 0;
 }
 
 .button-save:hover {
     -fx-graphic: url('../resource/media/hover/save.png');
-    -fx-background-color: -hover-background-color;
-    -fx-text-fill: -hover-text-color;
-    -fx-cursor: hand;
 }
 
 .button-reset {
     -fx-graphic: url('../resource/media/normal/reset.png');
-    -fx-background-color: none;
-    -fx-pref-width: 35;
-    -fx-pref-height: 35;
-    -fx-padding: 0;
 }
-
 
 .button-reset:hover {
     -fx-graphic: url('../resource/media/hover/reset.png');
-    -fx-background-color: -hover-background-color;
-    -fx-text-fill: -hover-text-color;
-    -fx-cursor: hand;
 }
 
 .button-remove {
     -fx-graphic: url('../resource/media/normal/remove.png');
-    -fx-background-color: none;
-    -fx-pref-width: 35;
-    -fx-pref-height: 35;
-    -fx-padding: 0;
 }
 
 .button-remove:hover {
     -fx-graphic: url('../resource/media/hover/remove.png');
-    -fx-background-color: -hover-background-color;
-    -fx-text-fill: -hover-text-color;
-    -fx-cursor: hand;
 }
 
 /* ========================= Radio Button ========================= */
@@ -226,7 +205,7 @@
 
 /* ========================= TextField ========================= */
 
-.text-field-add {
+.text-field {
     -fx-background-size: 22;
     -fx-background-repeat: no-repeat;
     -fx-background-position: right center;
@@ -238,27 +217,13 @@
     -fx-font-size: 15;
 }
 
-.text-field-add:focused {
+.text-field:focused {
     -fx-background-color:white;
     -fx-border-color: -purple-color;
 }
 
 .text-field-edit {
     -fx-background-image: url('../resource/media/normal/search-bar.png');
-    -fx-background-size: 22;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: right center;
-
-    -fx-background-color: white;
-    -fx-border-color: -gray-color;
-    -fx-border-radius: 3 0 0 3;
-    -fx-border-width: 1;
-    -fx-font-size: 15;
-}
-
-.text-field-edit:focused {
-    -fx-background-color:white;
-    -fx-border-color: -purple-color;
 }
 
 /* ========================= HTML Editor ========================= */
@@ -267,7 +232,7 @@
     -fx-font-size: 12;  
     -fx-border-color: -purple-color; 
     -fx-border-radius: 3;   
-    -fx-focus-color: none;
+    -fx-focus-color: transparent;
 }
  
 .html-editor .button, .html-editor .toggle-button {
@@ -299,23 +264,26 @@
     -fx-background-color: -gray-color;
 }
 
-.tab-pane .tab:selected
-{
-    -fx-background-color: white;
-    -fx-focus-color: none;
-}
-
-.tab .tab-label { 
+.tab .tab-label {
     -fx-alignment: CENTER;
     -fx-text-fill: -text-color;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
 }
 
-.tab:selected .tab-label { 
+.tab:selected .focus-indicator {
+    -fx-focus-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.tab:hover .tab-label {
     -fx-text-fill: -hover-text-color;
 }
 
-.tab:hover .tab-label { 
+.tab-pane .tab:selected {
+    -fx-background-color: white;
+}
+
+.tab:selected .tab-label {
     -fx-text-fill: -hover-text-color;
 }

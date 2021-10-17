@@ -1,13 +1,10 @@
 package sample;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import main.DictionaryManagement;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,7 +24,7 @@ public class MainController implements Initializable {
     private AnchorPane settingPane;
 
     @FXML
-    private SearchPaneController searchPaneController;
+    private SearchController searchController;
     @FXML
     private BookmarkController bookmarkController;
     @FXML
@@ -43,8 +40,6 @@ public class MainController implements Initializable {
     private Button mainHistoryButton;
     @FXML
     private Button settingButton;
-
-    protected GeneralController currentController;
 
     private void setMainContent(AnchorPane anchorPane) {
         mainContent.getChildren().setAll(anchorPane);
@@ -62,7 +57,7 @@ public class MainController implements Initializable {
     public void showSearchPane() {
         resetStyleNav();
         searchButton.getStyleClass().add("active");
-        searchPaneController.initSearchListView();
+        searchController.initSearchListView();
         setMainContent(searchPane);
     }
 
@@ -72,7 +67,6 @@ public class MainController implements Initializable {
         translateButton.getStyleClass().add("active");
         setMainContent(translatePane);
     }
-
 
     @FXML
     public void showBookmarkPane() {
@@ -100,21 +94,21 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SearchPane.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("search.fxml"));
             searchPane = loader.load();
-            searchPaneController = loader.getController();
+            searchController = loader.getController();
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("historyPane.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("history.fxml"));
             historyPane = loader.load();
             historyController = loader.getController();
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("bookmarkPane.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("bookmark.fxml"));
             bookmarkPane = loader.load();
             bookmarkController = loader.getController();
         } catch (Exception e) {
@@ -127,7 +121,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Settings.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("setting.fxml"));
             settingPane = loader.load();
         } catch (Exception e) {
             e.printStackTrace();

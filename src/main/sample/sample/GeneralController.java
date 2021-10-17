@@ -2,7 +2,6 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -19,15 +18,13 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class GeneralController extends MainController implements Initializable {
-    private static String EV_PATH = "src/main/resource/vocab/eng_vie.txt";
-    private static String VE_PATH = "src/main/resource/vocab/vie_eng.txt";
-    private static String ENG_HISTORY_PATH = "src/main/resource/vocab/eng_history.txt";
-    private static String VIE_HISTORY_PATH = "src/main/resource/vocab/vie_history.txt";
-    private static String ENG_BOOKMARK_PATH = "src/main/resource/vocab/eng_bookmark.txt";
-    private static String VIE_BOOKMARK_PATH = "src/main/resource/vocab/vie_bookmark.txt";
+    private static final String EV_PATH = "src/main/resource/vocab/eng_vie.txt";
+    private static final String VE_PATH = "src/main/resource/vocab/vie_eng.txt";
+    private static final String ENG_HISTORY_PATH = "src/main/resource/vocab/eng_history.txt";
+    private static final String VIE_HISTORY_PATH = "src/main/resource/vocab/vie_history.txt";
+    private static final String ENG_BOOKMARK_PATH = "src/main/resource/vocab/eng_bookmark.txt";
+    private static final String VIE_BOOKMARK_PATH = "src/main/resource/vocab/vie_bookmark.txt";
 
-    protected final ArrayList<String> historyList = new ArrayList<String>();
-    protected final ArrayList<String> bookmarkList = new ArrayList<String>();
     protected ObservableList<String> bookmarkSearch = FXCollections.observableArrayList();
     protected final ObservableList<String> searchList = FXCollections.observableArrayList();
     protected ObservableList<String> historySearch = FXCollections.observableArrayList();
@@ -65,9 +62,9 @@ public class GeneralController extends MainController implements Initializable {
     @FXML
     protected Label speaker2Language;
     @FXML
-    protected ChoiceBox<String> choiceboxuk;
+    protected ChoiceBox<String> choiceBoxUK;
     @FXML
-    protected ChoiceBox<String> choiceboxus;
+    protected ChoiceBox<String> choiceBoxUS;
     @FXML
     protected Slider slider;
 
@@ -81,7 +78,7 @@ public class GeneralController extends MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    public void showWarningAlert(){
+    public void showWarningAlert() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
@@ -123,7 +120,7 @@ public class GeneralController extends MainController implements Initializable {
         wordListView.setItems(searchList);
     }
 
-    public void setLanguage(){
+    public void setLanguage() {
         if (!isEVDic) {
             transLanguageEV.setVisible(false);
             transLanguageVE.setVisible(true);
@@ -184,18 +181,24 @@ public class GeneralController extends MainController implements Initializable {
             return;
         }
         searchField.setText(spelling);
-        int i = Collections.binarySearch(getCurrentDic().getBookmarkVocab(), new Word(spelling,null));
-        if(i >= 0){
+        int i = -1;
+        for (int j = 0; j < getCurrentDic().getBookmarkVocab().size(); j++) {
+            if (getCurrentDic().getBookmarkVocab().get(j).getSearching().equals(spelling)) {
+                i = j;
+                break;
+            }
+        }
+        if (i >= 0) {
             bookmarkFalse.setVisible(false);
             bookmarkTrue.setVisible(true);
-        }else{
+        } else {
             bookmarkFalse.setVisible(true);
             bookmarkTrue.setVisible(false);
         }
         int index = Collections.binarySearch(getCurrentDic().getVocab(), new Word(spelling, null));
-        if(isEVDic){
+        if (isEVDic) {
             headText.setText(spelling);
-        }else{
+        } else {
             String meaning = veDic.getVocab().get(index).getMeaning().substring(9, 9 + spelling.length());
             headText.setText(meaning);
         }
@@ -292,7 +295,7 @@ public class GeneralController extends MainController implements Initializable {
         alert.setHeaderText(null);
         alert.showAndWait();
 
-        if(alert.getResult() == yes) {
+        if (alert.getResult() == yes) {
             getCurrentDic().removeWord(spelling, getCurrentDic().getPATH(), getCurrentDic().getVocab());
             getCurrentDic().removeWord(spelling, getCurrentDic().getHISTORY_PATH(), getCurrentDic().getHistoryVocab());
             getCurrentDic().removeWord(spelling, getCurrentDic().getBOOKMARK_PATH(), getCurrentDic().getBookmarkVocab());

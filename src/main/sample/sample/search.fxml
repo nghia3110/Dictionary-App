@@ -11,7 +11,7 @@
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="second-color" stylesheets="@../style/search.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SearchPaneController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="second-color" stylesheets="@../style/search.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.SearchController">
    <children>
       <AnchorPane layoutY="-3.0" prefHeight="459.0" prefWidth="257.0" styleClass="second-color" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-3.0">
          <children>
@@ -35,7 +35,7 @@
       </AnchorPane>
       <AnchorPane layoutX="254.0" layoutY="14.0" prefHeight="565.0" prefWidth="492.0" style="-fx-background-radius: 3;" styleClass="first-color" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="254.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="14.0">
          <children>
-            <HBox layoutX="25.0" layoutY="17.0" prefHeight="40.0" prefWidth="389.0">
+            <HBox layoutX="25.0" layoutY="17.0" prefHeight="40.0" prefWidth="390.0">
                <children>
                   <Label fx:id="headText" prefHeight="40.0" prefWidth="390.0" styleClass="title-meaning" text="Nghĩa của từ" textFill="#902929">
                      <font>

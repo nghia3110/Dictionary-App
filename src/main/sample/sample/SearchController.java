@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
-public class SearchPaneController extends GeneralController implements Initializable {
-    private ArrayList<Word> searchWordTemp = new ArrayList<Word>();
+public class SearchController extends GeneralController implements Initializable {
+    private final ArrayList<Word> searchWordTemp = new ArrayList<>();
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
         setLanguage();
         for (Word temp : getCurrentDic().getVocab()) {
             searchList.add(temp.getSearching());
@@ -26,7 +26,8 @@ public class SearchPaneController extends GeneralController implements Initializ
 
     public void setSearchListViewItem() {
         searchList.clear();
-        if(searchField.getText().equals("")){
+        if (searchField.getText().equals("")) {
+            searchWordTemp.clear();
             searchWordTemp.addAll(getCurrentDic().getVocab());
         }
         for (Word temp : searchWordTemp) {
@@ -40,13 +41,13 @@ public class SearchPaneController extends GeneralController implements Initializ
         searchWordTemp.clear();
         searchList.clear();
         String word = searchField.getText();
-        int index = getCurrentDic().binaryLookup(0, getCurrentDic().getVocab().size(), word,  getCurrentDic().getVocab());
+        int index = getCurrentDic().binaryLookup(0, getCurrentDic().getVocab().size(), word, getCurrentDic().getVocab());
         if (index < 0) {
             Spelling corrector = new Spelling("src/main/resource/vocab/spelling.txt");
             word = corrector.correct(word);
-            index = getCurrentDic().binaryLookup(0,  getCurrentDic().getVocab().size(), word,  getCurrentDic().getVocab());
+            index = getCurrentDic().binaryLookup(0, getCurrentDic().getVocab().size(), word, getCurrentDic().getVocab());
         }
-        updateWordInListView(word, index,  getCurrentDic().getVocab(), searchWordTemp);
+        updateWordInListView(word, index, getCurrentDic().getVocab(), searchWordTemp);
         setSearchListViewItem();
     }
 
@@ -54,14 +55,15 @@ public class SearchPaneController extends GeneralController implements Initializ
     @FXML
     public void showDefinition() {
         String spelling = wordListView.getSelectionModel().getSelectedItem();
-        if(spelling == null){
+        if (spelling == null) {
             return;
         }
-        int index = Collections.binarySearch( getCurrentDic().getVocab(), new Word(spelling, null));
-        String meaning =  getCurrentDic().getVocab().get(index).getMeaning();
+        int index = Collections.binarySearch(getCurrentDic().getVocab(), new Word(spelling, null));
+        String meaning = getCurrentDic().getVocab().get(index).getMeaning();
         definitionView.getEngine().loadContent(meaning, "text/html");
         if (Collections.binarySearch(getCurrentDic().getHistoryVocab(), new Word(spelling, null)) <= 0) {
-            getCurrentDic().addWordToFile(spelling, meaning, getCurrentDic().getHISTORY_PATH());        }
+            getCurrentDic().addWordToFile(spelling, meaning, getCurrentDic().getHISTORY_PATH());
+        }
     }
 
     @FXML
