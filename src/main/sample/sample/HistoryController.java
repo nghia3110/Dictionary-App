@@ -25,7 +25,7 @@ public class HistoryController extends GeneralController implements Initializabl
         historySearch.clear();
         historyWordTemp.clear();
         String input = searchField.getText();
-        int index = getCurrentDic().binaryLookup(0, getCurrentDic().getHistoryVocab().size(), input, getCurrentDic().getHistoryVocab());
+        int index = getCurrentDic().binaryLookup(0, getCurrentDic().getHistoryVocab().size() - 1, input, getCurrentDic().getHistoryVocab());
         updateWordInListView(input, index, getCurrentDic().getHistoryVocab(), historyWordTemp);
         setHistoryListViewItem();
     }

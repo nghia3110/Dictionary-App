@@ -26,7 +26,7 @@ public class BookmarkController extends GeneralController implements Initializab
         bookmarkWordTemp.clear();
         bookmarkSearch.clear();
         String input = searchField.getText();
-        int index = getCurrentDic().binaryLookup(0, getCurrentDic().getBookmarkVocab().size(), input, getCurrentDic().getBookmarkVocab());
+        int index = getCurrentDic().binaryLookup(0, getCurrentDic().getBookmarkVocab().size() - 1, input, getCurrentDic().getBookmarkVocab());
         updateWordInListView(input, index, getCurrentDic().getBookmarkVocab(), bookmarkWordTemp);
         setBookmarkListViewItem();
     }

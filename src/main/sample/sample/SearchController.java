@@ -41,11 +41,11 @@ public class SearchController extends GeneralController implements Initializable
         searchWordTemp.clear();
         searchList.clear();
         String word = searchField.getText();
-        int index = getCurrentDic().binaryLookup(0, getCurrentDic().getVocab().size(), word, getCurrentDic().getVocab());
+        int index = getCurrentDic().binaryLookup(0, getCurrentDic().getVocab().size() - 1, word, getCurrentDic().getVocab());
         if (index < 0) {
             Spelling corrector = new Spelling("src/main/resource/vocab/spelling.txt");
             word = corrector.correct(word);
-            index = getCurrentDic().binaryLookup(0, getCurrentDic().getVocab().size(), word, getCurrentDic().getVocab());
+            index = getCurrentDic().binaryLookup(0, getCurrentDic().getVocab().size() -1, word, getCurrentDic().getVocab());
         }
         updateWordInListView(word, index, getCurrentDic().getVocab(), searchWordTemp);
         setSearchListViewItem();

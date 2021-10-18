@@ -20,14 +20,14 @@ public class dictionaryApplication extends Application {
         loadSettingFromFile();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/sample/main.fxml")));
         primaryStage.setTitle("Dictionary");
-        primaryStage.setScene(new Scene(root, 855, 600));
+        primaryStage.setScene(new Scene(root, 857, 600));
         primaryStage.show();
         primaryStage.setOnCloseRequest(event -> saveSettingToFile());
     }
 
     public void loadSettingFromFile() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/main/resource/saveSettings/saveSetting.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/resource/saveSetting/saveSetting.txt"));
             String line;
             int cnt = 0;
             while ((line = reader.readLine()) != null) {
@@ -52,7 +52,7 @@ public class dictionaryApplication extends Application {
 
     public void saveSettingToFile() {
         try {
-            File file = new File("src/main/resource/saveSettings/saveSetting.txt");
+            File file = new File("src/main/resource/saveSetting/saveSetting.txt");
             FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(GeneralController.isEVDic + "\n");
             fileWriter.write(VoiceRSS.voiceNameUK + "\n");
