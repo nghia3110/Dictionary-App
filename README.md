@@ -12,4 +12,8 @@
 * Ứng dụng có chức năng thêm, xoá hoặc sửa lại nghĩa của từ vựng. Những thay đổi này sẽ được cập nhật vào dữ liệu từ điển của ứng dụng.
 * Một tính năng nữa của ứng dụng đó là phát âm từ vựng. Ở mỗi phần giải nghĩa của từ tiếng Anh, sẽ có 2 giọng đọc là Anh-Anh và Anh-Mỹ để người dùng có thể học thêm được nhiều cách phát âm khác nhau. Ngoài ra, ứng dụng còn cho phép người dùng đổi giọng đọc và đổi tốc độ đọc của các từ. Với những từ tiếng Việt, ứng dụng cung cấp 1 giọng đọc duy nhất và vẫn có thể thay đổi được tốc độ đọc.
 * Trong quá trình sử dụng, những thay đổi của người dùng liên quan tới phần cài đặt như: từ điển Anh-Việt hay Việt-Anh, giọng đọc và tốc độ đọc sẽ được lưu lại cho lần sử dụng * sau.
-* Người sử dụng có thể tra cứu từ vựng trực tiếp từ dữ liệu của ứng dụng hoặc có thể sử dụng Google API để dịch từ hoặc câu như ứng dụng Google Translate
+* Người sử dụng có thể tra cứu từ vựng trực tiếp từ dữ liệu của ứng dụng hoặc có thể sử dụng Google API để dịch từ hoặc câu như ứng dụng Google Translate.
+## Cài đặt
+* Cài đặt JDK 8 tại [đây](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html), có thể sử dụng Intellij, Eclipse hoặc Netbean để chạy chương trình viết bằng Java.
+* Sau khi tải mã nguồn, cần import file lib đã có sẵn vào project. Trong lib đã có đủ các file cần thiết để có thể chạy được chương trình.
+* Tìm đến sample/dictionaryApplication và chạy chương trình.
