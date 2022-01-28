@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="lib">
+    <archive path="E:/Java/Dictionary-App/lib/javafx-swt.jar" />
+    <archive path="E:/Java/Dictionary-App/lib/javafx.web.jar" />
+    <archive path="E:/Java/Dictionary-App/lib/javafx.base.jar" />
+    <archive path="E:/Java/Dictionary-App/lib/javafx.fxml.jar" />
+    <archive path="E:/Java/Dictionary-App/lib/javafx.media.jar" />
+    <archive path="E:/Java/Dictionary-App/lib/javafx.swing.jar" />
+    <archive path="E:/Java/Dictionary-App/lib/voicerss_tts.jar" />
+    <archive path="E:/Java/Dictionary-App/lib/javafx.controls.jar" />
+    <archive path="E:/Java/Dictionary-App/lib/javafx.graphics.jar" />
+    <archive path="E:/Java/Dictionary-App/lib/controlsfx-8.40.11.jar" />
+  </library>
+</eclipse-userlibraries>
+

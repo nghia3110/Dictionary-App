@@ -1,4 +1,0 @@
-true
-Alice
-Linda
-1.0
