@@ -1,4 +1,4 @@
 true
-Nancy
+Alice
 Linda
-2.0
+1.017605633802817
