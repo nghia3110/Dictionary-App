@@ -41,7 +41,7 @@ public class SearchController extends GeneralController implements Initializable
         String word = searchField.getText();
         int index = getCurrentDic().binaryLookup(0, getCurrentDic().getVocab().size() - 1, word, getCurrentDic().getVocab());
         if (index < 0) {
-            Spelling corrector = new Spelling("src/main/resource/vocab/spelling.txt");
+            Spelling corrector = new Spelling("src/resource/vocab/spelling.txt");
             word = corrector.correct(word);
             index = getCurrentDic().binaryLookup(0, getCurrentDic().getVocab().size() -1, word, getCurrentDic().getVocab());
         }

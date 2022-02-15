@@ -210,7 +210,7 @@ public class DictionaryManagement extends Dictionary {
         String word = getInput.nextLine().toLowerCase();
         int index = binaryLookup(0, oldVocab.size(), word);
         if (index < 0) {
-            Spelling corrector = new Spelling("src/main/resource/vocab/spelling.txt");
+            Spelling corrector = new Spelling("src/resource/vocab/spelling.txt");
             word = corrector.correct(word);
             index = binaryLookup(0, oldVocab.size(), word);
         }

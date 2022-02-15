@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16215f77-be26-4872-ab63-1e57d00f0f76" name="Changes" comment="Fix bugs 2.0">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base/DictionaryManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/base/DictionaryManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base/Spelling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/base/Spelling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SearchController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resource/media/audio.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/resource/media/audio.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resource/saveSetting/saveSetting.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resource/saveSetting/saveSetting.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resource/vocab/eng_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resource/vocab/eng_history.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
