@@ -29,7 +29,7 @@
 
 # Cách sử dụng <a name="user-guide"></a>
 
-* Video hướng dẫn sử dụng tại [Youtube](https://youtu.be/LihM4SI81ug).
+* Video hướng dẫn sử dụng tại [Youtube](https://youtu.be/SrplQycaen4).
 <p align="center">
 <img width="640" height="480" src="https://i.imgur.com/CTlEObG.png">
 </p>
